@@ -1,0 +1,2 @@
+C:/savory_book/android/app/.cxx/Debug/1z523046/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/savory_book/android/app/.cxx/Debug/1z523046/armeabi-v7a/CMakeFiles/rebuild_cache.dir
