@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:savory_book/Screens/add/add_screen.dart';
-import 'package:savory_book/Screens/favorites/collections.dart';
-import 'package:savory_book/Screens/home/home_screen.dart';
-import 'package:savory_book/Screens/profile/user_screen.dart';
+import 'package:savory_book/screens/add/add_screen.dart';
+import 'package:savory_book/screens/favorites/collections.dart';
+import 'package:savory_book/screens/home/home_screen.dart';
+import 'package:savory_book/screens/profile/user_screen.dart';
 import 'package:savory_book/model/user_model.dart';
 
 class BottomNavigation extends StatefulWidget {
-  const BottomNavigation({super.key});
+  final User user;
+  const BottomNavigation({super.key, required this.user});
 
   @override
   State<BottomNavigation> createState() => _BottomNavigationState();
@@ -23,7 +24,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
     super.initState();
 
     final userBox = Hive.box<User>('userBox');
-    user = userBox.get('userData')!;
+    user = userBox.get(widget.user.email)!;
+
+    // final userBox = Hive.box<Map>('users');
+    // Map userdetail = userBox.get(widget.user)!;
+    // user = ;
 
     _screens = [
       HomeScreen(user: user),

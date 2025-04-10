@@ -4,6 +4,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/egg_salad_sandwich.jpeg",
     "category": "Breakfast",
     "cookTime": "10 minutes",
+    "type": "veg",
     "ingredients":
         "Bread\nEggs\nOnion\nTomato\nGreen chili\nButter or oil\nMayonnaise (optional)\nCheese slice (optional)\nBlack pepper\nRed chili powder\nTurmeric powder\nGaram masala (optional)\nSalt",
     "preparation":
@@ -14,6 +15,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/wrap.jpeg",
     "category": "Lunch",
     "cookTime": "15 minutes",
+    "type": "veg",
     "ingredients":
         "Whole Wheat Tortilla\nHummus\nCucumber\nTomato\nRed Onion\nFeta Cheese\nOlives\nLettuce",
     "preparation":
@@ -24,6 +26,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/garlic_butter_salmon.jpeg",
     "category": "Dinner",
     "cookTime": "20 minutes",
+    "type": "non-veg",
     "ingredients":
         "Salmon Fillets\nGarlic\nButter\nLemon Juice\nParsley\nSalt & Pepper",
     "preparation":
@@ -64,6 +67,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/idli_sambar.jpeg",
     "category": "Breakfast",
     "cookTime": "30 minutes",
+    "type": "vegetarian",
     "ingredients":
         "Idli batter\nSambar dal\nVegetables (carrot, beans, etc.)\nMustard seeds\nCurry leaves\nSalt",
     "preparation":
@@ -74,6 +78,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/white_sauce_pasta.jpeg",
     "category": "Snack",
     "cookTime": "20 minutes",
+    "type": "veg",
     "ingredients":
         "Pasta\nButter\nFlour\nMilk\nCheese\nGarlic\nSalt & Pepper\nVegetables (optional)",
     "preparation":
@@ -94,6 +99,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/samosa.jpeg",
     "category": "Snack",
     "cookTime": "30 minutes",
+    "type": "non-veg",
     "ingredients":
         "All-purpose flour\nChicken (minced)\nOnion\nSpices (cumin, coriander, etc.)\nOil\nSalt\nWater",
     "preparation":
@@ -104,6 +110,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/sambar_rice.jpeg",
     "category": "Lunch",
     "cookTime": "30 minutes",
+    "type": "veg",
     "ingredients":
         "Toor dal\nMixed vegetables (carrot, beans, etc.)\nSambar powder\nTamarind paste\nMustard seeds\nCurry leaves\nRice",
     "preparation":
@@ -124,6 +131,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/pasta_carbonara.jpeg",
     "category": "Lunch",
     "cookTime": "20 minutes",
+    "type": "non-veg",
     "ingredients":
         "Spaghetti\nEggs\nParmesan Cheese\nPancetta or Bacon\nBlack Pepper\nGarlic (optional)",
     "preparation":
@@ -134,6 +142,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/mushroom_risotto.jpeg",
     "category": "Dinner",
     "cookTime": "30 minutes",
+    "type": "veg",
     "ingredients":
         "Arborio Rice\nMushrooms\nOnion\nGarlic\nVegetable Broth\nParmesan Cheese\nButter\nParsley",
     "preparation":
@@ -203,6 +212,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/fish_rice.jpeg",
     "category": "Dinner",
     "cookTime": "30 minutes",
+    "type": "non-veg",
     "ingredients":
         "Fish (any type)\nCurry powder\nCoconut milk\nOnion\nTomato\nGarlic\nGinger\nRice",
     "preparation":
@@ -213,6 +223,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/dal_rice.jpeg",
     "category": "Lunch",
     "cookTime": "30 minutes",
+    "type": "veg",
     "ingredients":
         "Lentils (any type)\nRice\nOnion\nTomato\nGarlic\nGinger\nSpices (cumin, turmeric, etc.)",
     "preparation":
@@ -252,6 +263,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/chicken_biriyani.jpeg",
     "category": "Lunch",
     "cookTime": "1 hour",
+    "type": "non-veg",
     "ingredients":
         "Basmati rice\nChicken\nOnion\nTomato\nGinger-garlic paste\nBiryani masala\nYogurt\nMint leaves\nCoriander leaves\nSalt",
     "preparation":
@@ -262,6 +274,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/chapathi_chicken_curry.jpeg",
     "category": "Dinner",
     "cookTime": "40 minutes",
+    "type": "non-veg",
     "ingredients":
         "Whole wheat flour\nWater\nSalt\nChicken\nOnion\nTomato\nSpices (cumin, coriander, etc.)\nOil",
     "preparation":

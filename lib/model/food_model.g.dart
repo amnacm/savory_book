@@ -21,13 +21,14 @@ class FoodAdapter extends TypeAdapter<Food> {
       title: fields[1] as String,
       cookTime: fields[2] as String,
       category: fields[3] as String,
-      ingredients: (fields[4] as List).cast<String>(),
-      preparation: fields[5] as String,
-      calories: fields[6] as String,
-      protein: fields[7] as String,
-      carbohydrates: fields[8] as String,
-      fats: fields[9] as String,
-      id: fields[10] as int?,
+      type: fields[4] as String,
+      ingredients: (fields[5] as List).cast<String>(),
+      preparation: fields[6] as String,
+      calories: fields[7] as String,
+      protein: fields[8] as String,
+      carbohydrates: fields[9] as String,
+      fats: fields[10] as String,
+      id: fields[11] as int?,
     );
   }
 

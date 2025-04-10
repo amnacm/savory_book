@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:savory_book/Screens/code_exractions/appbar_theme.dart';
+import 'package:savory_book/screens/code_exractions/appbar_theme.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});

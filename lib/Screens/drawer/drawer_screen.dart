@@ -1,10 +1,11 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:savory_book/Screens/drawer/privacy_policy.dart';
-import 'package:savory_book/Screens/drawer/settings.dart';
-import 'package:savory_book/Screens/drawer/your_special.dart';
-import 'package:savory_book/Screens/profile/user_screen.dart';
+import 'package:savory_book/screens/drawer/privacy_policy.dart';
+import 'package:savory_book/screens/drawer/settings.dart';
+import 'package:savory_book/screens/drawer/your_special.dart';
+import 'package:savory_book/screens/profile/user_screen.dart';
 import 'package:savory_book/functions/db_function.dart';
 import 'package:savory_book/model/user_model.dart';
 
@@ -13,15 +14,25 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log(userNotifier.value.toString());
     return Drawer(
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 13.0, vertical: 20),
           child: Column(
             children: [
-              ValueListenableBuilder(
+              ValueListenableBuilder<User?>(
                 valueListenable: userNotifier,
-                builder: (BuildContext context, User user, Widget? child) {
+                builder: (BuildContext context, User? user, Widget? child) {
+                  if (user == null) {
+                    return const Center(
+                      child: Text(
+                        "No user found",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    );
+                  }
+                  log(userNotifier.value.toString());
                   return Column(
                     children: [
                       GestureDetector(

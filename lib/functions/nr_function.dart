@@ -6,6 +6,7 @@ import 'package:savory_book/model/food_model.dart';
 Future<void> publishingFood(
   String name,
   String cookTime,
+  String type,
   String category,
   String preperation,
   String calories,
@@ -19,6 +20,7 @@ Future<void> publishingFood(
   if (name.isEmpty ||
       cookTime.isEmpty ||
       category.isEmpty ||
+      type.isEmpty ||
       ingredients.isEmpty ||
       preperation.isEmpty ||
       calories.isEmpty ||
@@ -32,6 +34,7 @@ Future<void> publishingFood(
     foodImagePath: addFoodImagePath,
     title: name,
     cookTime: cookTime,
+    type: type,
     category: category,
     ingredients: ingredients,
     preparation: preperation,
@@ -52,7 +55,8 @@ String? validateField({
   required String fieldName,
   String? allowedValues,
   String? email,
-  bool isNumeric = false,
+  String? password,
+  String? confirmPassword,
   bool isRequired = true,
 }) {
   if (isRequired && (value == null || value.trim().isEmpty)) {

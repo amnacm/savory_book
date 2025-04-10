@@ -1,10 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:savory_book/Screens/code_exractions/add_editform.dart';
+import 'package:savory_book/screens/code_exractions/add_editform.dart';
 import 'package:savory_book/model/food_model.dart';
 
 class EditFoodScreen extends StatefulWidget {
@@ -53,18 +50,13 @@ class _EditFoodScreenState extends State<EditFoodScreen> {
                     borderRadius: BorderRadius.circular(12),
                     image: _selectedImagePath != null
                         ? DecorationImage(
-                            image: kIsWeb
-                                ? MemoryImage(base64Decode(_selectedImagePath!))
-                                : FileImage(File(_selectedImagePath!)),
+                            image: FileImage(File(_selectedImagePath!)),
                             fit: BoxFit.cover,
                           )
                         : widget.foodRecipe.foodImagePath != null
                             ? DecorationImage(
-                                image: kIsWeb
-                                    ? MemoryImage(base64Decode(
-                                        widget.foodRecipe.foodImagePath!))
-                                    : FileImage(
-                                        File(widget.foodRecipe.foodImagePath!)),
+                                image: FileImage(
+                                    File(widget.foodRecipe.foodImagePath!)),
                                 fit: BoxFit.cover,
                               )
                             : null,
@@ -91,23 +83,12 @@ class _EditFoodScreenState extends State<EditFoodScreen> {
   }
 
   Future<void> _pickImage() async {
-    if (kIsWeb) {
-      final pickedImage =
-          await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (pickedImage != null) {
-        final bytes = await pickedImage.readAsBytes();
-        setState(() {
-          _selectedImagePath = base64Encode(bytes);
-        });
-      }
-    } else {
-      final XFile? pickedImage =
-          await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (pickedImage != null) {
-        setState(() {
-          _selectedImagePath = pickedImage.path;
-        });
-      }
+    final XFile? pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        _selectedImagePath = pickedImage.path;
+      });
     }
   }
 }

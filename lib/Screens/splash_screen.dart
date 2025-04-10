@@ -34,7 +34,7 @@ class _SplashscreenState extends State<Splashscreen> {
               width: 200,
               height: 200,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             const Text(
               "SavoryBook",
               style: TextStyle(

@@ -20,9 +20,7 @@ class CustomTextfield extends StatelessWidget {
         filled: true,
         hintText: hintText,
         hintStyle: TextStyle(
-            color: const Color(0xFF6E6E6E),
-            // fontSize: 18,
-            fontWeight: FontWeight.w400),
+            color: const Color(0xFF6E6E6E), fontWeight: FontWeight.w400),
         border: InputBorder.none,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide.none,
@@ -60,7 +58,7 @@ class MultilineTextfield extends StatelessWidget {
         filled: true,
         hintText: hintText,
         hintStyle: TextStyle(
-            color:const Color(0xFF6E6E6E),
+            color: const Color(0xFF6E6E6E),
             fontSize: 18,
             fontWeight: FontWeight.w400),
         border: InputBorder.none,
@@ -123,7 +121,7 @@ class NutritionalTextField extends StatelessWidget {
   }
 }
 
-//----------- Orange Button for saving data
+//----------- grey Button for saving data
 class SavingGreenOrange extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
@@ -136,7 +134,7 @@ class SavingGreenOrange extends StatelessWidget {
       onPressed: onPressed,
       style: TextButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
-        backgroundColor:  const Color(0xFFE08C43),
+        backgroundColor: const Color(0xFF50606F),
         foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -150,7 +148,7 @@ class SavingGreenOrange extends StatelessWidget {
   }
 }
 
-//----------- Orange Button for cancel data
+//----------- grey Button for cancel data
 class CancelButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
@@ -162,11 +160,10 @@ class CancelButton extends StatelessWidget {
       onPressed: onPressed,
       style: TextButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
-        foregroundColor:  Colors.black,
+        foregroundColor: Colors.black,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
-            side: BorderSide(
-                color: Colors.black, width: 1.5)),
+            side: BorderSide(color: Colors.black, width: 1.5)),
       ),
       child: Text(
         text,

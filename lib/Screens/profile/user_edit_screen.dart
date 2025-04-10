@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:savory_book/Functions/db_function.dart';
-import 'package:savory_book/Screens/code_exractions/custom_textfield.dart';
+import 'package:savory_book/screens/code_exractions/custom_textfield.dart';
 import 'package:savory_book/functions/nr_function.dart';
 import 'package:savory_book/functions/snackbar.dart';
 import 'package:savory_book/model/user_model.dart';

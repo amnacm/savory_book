@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:savory_book/Screens/favorites/collection_plan.dart';
+import 'package:savory_book/screens/favorites/collection_plan.dart';
 import 'package:savory_book/functions/db_function.dart';
 
 class CollectionsScreen extends StatelessWidget {

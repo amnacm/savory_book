@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/linecons_icons.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -86,6 +84,9 @@ class _FoodDetailsDBState extends State<FoodDetailsDB> {
             style: const TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 25),
+          Text('type : ${widget.foodRecipe.type}',
+              style: const TextStyle(fontSize: 16)),
+          const SizedBox(height: 10),
           const Text(
             'Ingredients',
             style: TextStyle(
@@ -158,15 +159,10 @@ class _FoodDetailsDBState extends State<FoodDetailsDB> {
       fit: StackFit.expand,
       children: [
         if (widget.foodRecipe.foodImagePath != null)
-          kIsWeb
-              ? Image.memory(
-                  base64Decode(widget.foodRecipe.foodImagePath!),
-                  fit: BoxFit.cover,
-                )
-              : Image.file(
-                  File(widget.foodRecipe.foodImagePath!),
-                  fit: BoxFit.cover,
-                ),
+          Image.file(
+            File(widget.foodRecipe.foodImagePath!),
+            fit: BoxFit.cover,
+          ),
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

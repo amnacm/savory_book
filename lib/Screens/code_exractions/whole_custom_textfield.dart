@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:savory_book/functions/nr_function.dart';
-import 'package:savory_book/Screens/code_exractions/custom_textfield.dart';
+import 'package:savory_book/screens/code_exractions/custom_textfield.dart';
 
 class WholeCustomTextField extends StatefulWidget {
   final TextEditingController name;
   final TextEditingController cookTime;
   final TextEditingController category;
+  final TextEditingController type;
 
   const WholeCustomTextField(
       {super.key,
       required this.name,
       required this.cookTime,
-      required this.category});
+      required this.category,
+      required this.type});
 
   @override
   State<WholeCustomTextField> createState() => _WholeCustomTextFieldState();
@@ -104,6 +106,41 @@ class _WholeCustomTextFieldState extends State<WholeCustomTextField> {
         ),
         const SizedBox(
           height: 15,
+        ),
+        //-------Type
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'Type',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              width: 40,
+            ),
+            Expanded(
+                child: DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                  hintText: 'choose a type',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black))),
+              value: widget.type.text.isEmpty ? null : widget.type.text,
+              items: ['Veg', 'Non-Veg']
+                  .map((type) => DropdownMenuItem(
+                        value: type,
+                        child: Text(type),
+                      ))
+                  .toList(),
+              onChanged: (value) {
+                setState(() {
+                  widget.type.text = value!;
+                });
+              },
+              validator: (value) => value == null || value.isEmpty
+                  ? 'Please select a type'
+                  : null,
+            ))
+          ],
         ),
       ],
     );

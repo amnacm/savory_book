@@ -1,10 +1,8 @@
-import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:savory_book/Screens/code_exractions/custom_textfield.dart';
-import 'package:savory_book/Screens/code_exractions/whole_custom_textfield.dart';
+import 'package:savory_book/screens/code_exractions/custom_textfield.dart';
+import 'package:savory_book/screens/code_exractions/whole_custom_textfield.dart';
 import 'package:savory_book/functions/nr_function.dart';
 
 class AddScreen extends StatefulWidget {
@@ -22,6 +20,7 @@ class _AddScreenState extends State<AddScreen> {
   final _nameController = TextEditingController();
   final _cookTimeController = TextEditingController();
   final _categoryController = TextEditingController();
+  final _typeController = TextEditingController();
   final _preparationController = TextEditingController();
   final _caloriesController = TextEditingController();
   final _proteinController = TextEditingController();
@@ -33,25 +32,13 @@ class _AddScreenState extends State<AddScreen> {
   ];
 
   Future<void> _pickImage() async {
-    if (kIsWeb) {
-      // Web: Use base64 encoding
-      final pickedImage =
-          await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (pickedImage != null) {
-        final bytes = await pickedImage.readAsBytes();
-        setState(() {
-          addFoodImagePath = base64Encode(bytes); // Store as base64 string
-        });
-      }
-    } else {
-      // Mobile: Use file path
-      final XFile? pickedImage =
-          await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (pickedImage != null) {
-        setState(() {
-          addFoodImagePath = pickedImage.path; // Store file path
-        });
-      }
+    // Mobile: Use file path
+    final XFile? pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        addFoodImagePath = pickedImage.path; // Store file path
+      });
     }
   }
 
@@ -59,6 +46,7 @@ class _AddScreenState extends State<AddScreen> {
     final name = _nameController.text;
     final cookTime = _cookTimeController.text;
     final category = _categoryController.text.trim();
+    final type = _typeController.text.trim();
     final preperation = _preparationController.text;
     final calories = _caloriesController.text;
     final carbohydrates = _carbohydratesController.text;
@@ -69,7 +57,7 @@ class _AddScreenState extends State<AddScreen> {
         .where((ingredient) => ingredient.isNotEmpty)
         .toList();
 
-    publishingFood(name, cookTime, category, preperation, calories,
+    publishingFood(name, cookTime, category, type, preperation, calories,
         carbohydrates, protein, fats, ingredients, context, addFoodImagePath);
   }
 
@@ -95,13 +83,11 @@ class _AddScreenState extends State<AddScreen> {
                   width: double.infinity,
                   height: 240,
                   decoration: BoxDecoration(
-                    color:  const Color(0xFFD9D9D9),
+                    color: const Color(0xFFD9D9D9),
                     borderRadius: BorderRadius.circular(12),
                     image: addFoodImagePath != null
                         ? DecorationImage(
-                            image: kIsWeb
-                                ? MemoryImage(base64Decode(addFoodImagePath!))
-                                : FileImage(File(addFoodImagePath!)),
+                            image: FileImage(File(addFoodImagePath!)),
                             fit: BoxFit.cover,
                           )
                         : null,
@@ -125,7 +111,8 @@ class _AddScreenState extends State<AddScreen> {
                       WholeCustomTextField(
                           name: _nameController,
                           cookTime: _cookTimeController,
-                          category: _categoryController),
+                          category: _categoryController,
+                          type: _typeController),
 
                       //Ingredients
                       const Align(
@@ -183,12 +170,11 @@ class _AddScreenState extends State<AddScreen> {
                         ),
                         icon: Icon(
                           Icons.add_rounded,
-                          color:  Colors.black,
+                          color: Colors.black,
                         ),
                         style: TextButton.styleFrom(
                             backgroundColor: const Color(0xEBEAEAEA),
-                            foregroundColor:
-                                Colors.black),
+                            foregroundColor: Colors.black),
                       ),
                       const SizedBox(
                         height: 15,
@@ -322,6 +308,7 @@ class _AddScreenState extends State<AddScreen> {
                               }
                               _ingredientsControllers.removeRange(
                                   2, _ingredientsControllers.length);
+                              _typeController.clear();
                               _preparationController.clear();
                               _caloriesController.clear();
                               _proteinController.clear();
@@ -352,6 +339,7 @@ class _AddScreenState extends State<AddScreen> {
     _nameController.dispose();
     _cookTimeController.dispose();
     _categoryController.dispose();
+    _typeController.dispose();
     _preparationController.dispose();
     _caloriesController.dispose();
     _proteinController.dispose();

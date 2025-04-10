@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class OurAppBarTheme extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
@@ -8,7 +9,7 @@ class OurAppBarTheme extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: const Color(0xFFE27619),
+      color: const Color(0xFFD2AB94),
       height: 70,
       child: Row(
         children: [

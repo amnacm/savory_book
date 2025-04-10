@@ -3,6 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:hive/hive.dart';
 import 'package:savory_book/functions/snackbar.dart';
+import 'package:savory_book/model/user_model.dart';
 import 'package:savory_book/screens/login_page.dart';
 
 class Registerscreen extends StatefulWidget {
@@ -34,13 +35,13 @@ class _RegisterscreenState extends State<Registerscreen> {
   }
 
   Future<void> _registerUser() async {
-    final userBox = await Hive.openBox('users');
+    final userBox = await Hive.box<User>('userBox');
 
     String name = _nameController.text.trim();
     String email = _emailController.text.trim().toLowerCase();
     String password = _passwordController.text.trim();
     String confirmPassword = _confirmPasswordController.text.trim();
-    String? imagePath = _image?.path;
+    // String? imagePath = _image?.path;
 
     if (userBox.containsKey(email)) {
       showSnackBar(context, 'Email already exists! Please log in.');
@@ -51,12 +52,8 @@ class _RegisterscreenState extends State<Registerscreen> {
       showSnackBar(context, 'Passwords do not match!');
       return;
     }
-
-    await userBox.put(email, {
-      'name': name,
-      'password': password,
-      'image': imagePath,
-    });
+    User userDetails = User(name: name, email: email, password: password);
+    await userBox.put(email, userDetails);
 
     showSnackBar(context, 'Registration successful! Please log in.',
         backgroundColor: Colors.green);

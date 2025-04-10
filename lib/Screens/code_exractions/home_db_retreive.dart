@@ -164,16 +164,10 @@ class HomeDbRetrieve extends StatelessWidget {
                                   child: Opacity(
                                     opacity: 0.7,
                                     child: foodRecipe.foodImagePath != null
-                                        ? kIsWeb
-                                            ? Image.memory(
-                                                base64Decode(
-                                                    foodRecipe.foodImagePath!),
-                                                fit: BoxFit.cover,
-                                              )
-                                            : Image.file(
-                                                File(foodRecipe.foodImagePath!),
-                                                fit: BoxFit.cover,
-                                              )
+                                        ? Image.file(
+                                            File(foodRecipe.foodImagePath!),
+                                            fit: BoxFit.cover,
+                                          )
                                         : const Icon(
                                             Linecons.food,
                                             color: Color(0xFF5D5D5D),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:savory_book/Screens/code_exractions/custom_textfield.dart';
-import 'package:savory_book/Screens/code_exractions/whole_custom_textfield.dart';
+import 'package:savory_book/screens/code_exractions/custom_textfield.dart';
+import 'package:savory_book/screens/code_exractions/whole_custom_textfield.dart';
 import 'package:savory_book/functions/db_function.dart';
 import 'package:savory_book/functions/nr_function.dart';
 import 'package:savory_book/functions/snackbar.dart';
@@ -26,6 +26,7 @@ class _EditaddFormsState extends State<EditaddForms> {
   late final TextEditingController name;
   late final TextEditingController cookTime;
   late final TextEditingController category;
+  late final TextEditingController type;
   late final TextEditingController preparation;
   late final TextEditingController calories;
   late final TextEditingController protein;
@@ -40,6 +41,7 @@ class _EditaddFormsState extends State<EditaddForms> {
     name = TextEditingController(text: widget.foodRecipe.title);
     cookTime = TextEditingController(text: widget.foodRecipe.cookTime);
     category = TextEditingController(text: widget.foodRecipe.category);
+    type = TextEditingController(text: widget.foodRecipe.type);
     preparation = TextEditingController(text: widget.foodRecipe.preparation);
     calories =
         TextEditingController(text: widget.foodRecipe.calories.toString());
@@ -60,6 +62,7 @@ class _EditaddFormsState extends State<EditaddForms> {
       title: name.text,
       cookTime: cookTime.text,
       category: category.text.trim(),
+      type: type.text.trim(),
       ingredients: _ingredientsControllers.map((e) => e.text).toList(),
       preparation: preparation.text,
       calories: calories.text,
@@ -68,7 +71,8 @@ class _EditaddFormsState extends State<EditaddForms> {
       fats: fats.text,
     );
     await editFoodRecipe(index, updatedFood);
-    showSnackBar(context, 'Updated Successfully');
+    showSnackBar(context, 'Updated Successfully',
+        backgroundColor: Colors.green);
     Navigator.pop(context, updatedFood);
   }
 
@@ -79,7 +83,7 @@ class _EditaddFormsState extends State<EditaddForms> {
         child: Column(
           children: [
             WholeCustomTextField(
-                name: name, cookTime: cookTime, category: category),
+                name: name, cookTime: cookTime, category: category, type: type),
 
             //Ingredients
             const Align(
@@ -115,8 +119,7 @@ class _EditaddFormsState extends State<EditaddForms> {
                 style: TextStyle(fontSize: 18),
               ),
               icon: const Icon(Icons.add_rounded),
-              style: TextButton.styleFrom(
-                  foregroundColor: Colors.black),
+              style: TextButton.styleFrom(foregroundColor: Colors.black),
             ),
 
             const SizedBox(

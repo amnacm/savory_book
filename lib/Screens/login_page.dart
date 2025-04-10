@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:savory_book/Functions/snackbar.dart';
-import 'package:savory_book/Screens/home/home_screen.dart';
 import 'package:savory_book/model/user_model.dart';
 import 'package:savory_book/screens/register_page.dart';
+import 'package:savory_book/widgets/bottom_navigation.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -18,11 +18,9 @@ class _LoginscreenState extends State<Loginscreen> {
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
 
-  Future<void> _loginUser() async {
+  void _loginUser() {
     try {
-      final userBox =
-          await Hive.openBox<Map>('users'); // Open box if not already open
-
+      final userBox = Hive.box<User>('userBox');
       String email = _emailController.text.trim().toLowerCase();
       String password = _passwordController.text.trim();
 
@@ -31,20 +29,15 @@ class _LoginscreenState extends State<Loginscreen> {
         return;
       }
 
-      final userData = userBox.get(email);
-      if (userData?['password'] == password) {
+      final user = userBox.get(email);
+      if (user != null && user.password == password) {
+        // Fixed condition
         showSnackBar(context, 'Login successful!',
             backgroundColor: Colors.green);
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => HomeScreen(
-              user: User(
-                name: _emailController.text.trim(),
-                email: _emailController.text.trim(),
-                password: _passwordController.text.trim(),
-              ),
-            ),
+            builder: (context) => BottomNavigation(user: user),
           ),
         );
       } else {
@@ -96,7 +89,7 @@ class _LoginscreenState extends State<Loginscreen> {
                           color: Color(0xFF2C3E50),
                         ),
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: 20),
                       TextFormField(
                         controller: _emailController,
                         decoration: InputDecoration(

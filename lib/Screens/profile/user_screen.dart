@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:savory_book/Screens/profile/user_edit_screen.dart';
+import 'package:savory_book/screens/profile/user_edit_screen.dart';
 import 'package:savory_book/functions/db_function.dart';
 import 'package:savory_book/model/user_model.dart';
 
@@ -27,9 +27,17 @@ class UserScreen extends StatelessWidget {
               child: SizedBox(
                 width: 300,
                 height: 450,
-                child: ValueListenableBuilder<User>(
+                child: ValueListenableBuilder<User?>(
                   valueListenable: userNotifier,
                   builder: (context, user, child) {
+                    if (user == null) {
+                      return const Center(
+                        child: Text(
+                          "No user found",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      );
+                    }
                     return Card(
                       elevation: 20,
                       child: Padding(

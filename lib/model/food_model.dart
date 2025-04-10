@@ -13,39 +13,43 @@ class Food extends HiveObject {
   final String cookTime;
 
   @HiveField(3)
-  final String category;
+  final String type;
 
   @HiveField(4)
-  final List<String> ingredients;
+  final String category;
 
   @HiveField(5)
-  final String preparation;
+  final List<String> ingredients;
 
   @HiveField(6)
-  final String calories;
+  final String preparation;
 
   @HiveField(7)
-  final String protein;
+  final String calories;
 
   @HiveField(8)
-  final String carbohydrates;
+  final String protein;
 
   @HiveField(9)
-  final String fats;
+  final String carbohydrates;
 
   @HiveField(10)
+  final String fats;
+
+  @HiveField(11)
   int? id;
 
-   @HiveField(11)
+   @HiveField(12)
   bool isCollected;
 
-   @HiveField(12)
+   @HiveField(13)
   DateTime? addedtoList;
 
   Food(
       {required this.foodImagePath,
       required this.title,
       required this.cookTime,
+      required this.type,
       required this.category,
       required this.ingredients,
       required this.preparation,
