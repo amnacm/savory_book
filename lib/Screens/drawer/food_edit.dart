@@ -73,7 +73,7 @@ class _EditFoodScreenState extends State<EditFoodScreen> {
               ),
               EditaddForms(
                   foodRecipe: widget.foodRecipe,
-                  index: widget.index,
+                  index: widget.foodRecipe.id!,
                   selectedImagePath: _selectedImagePath)
             ],
           ),

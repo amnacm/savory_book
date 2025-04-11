@@ -5,6 +5,7 @@ import 'package:savory_book/functions/db_function.dart';
 import 'package:savory_book/functions/nr_function.dart';
 import 'package:savory_book/functions/snackbar.dart';
 import 'package:savory_book/model/food_model.dart';
+import 'package:savory_book/screens/drawer/your_special.dart';
 
 class EditaddForms extends StatefulWidget {
   final Food foodRecipe;
@@ -55,8 +56,9 @@ class _EditaddFormsState extends State<EditaddForms> {
     }
   }
 
-  Future<void> _publishFood(int index) async {
+  Future<void> _publishFood(int id) async {
     final updatedFood = Food(
+      id: id,
       foodImagePath:
           widget.selectedImagePath ?? widget.foodRecipe.foodImagePath,
       title: name.text,
@@ -70,10 +72,11 @@ class _EditaddFormsState extends State<EditaddForms> {
       carbohydrates: carbohydrates.text,
       fats: fats.text,
     );
-    await editFoodRecipe(index, updatedFood);
+    await editFoodRecipe(id, updatedFood);
     showSnackBar(context, 'Updated Successfully',
         backgroundColor: Colors.green);
-    Navigator.pop(context, updatedFood);
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const YourSpecial()));
   }
 
   @override
@@ -254,7 +257,7 @@ class _EditaddFormsState extends State<EditaddForms> {
                 SavingGreenOrange(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        _publishFood(widget.index);
+                        _publishFood(widget.foodRecipe.id!);
                       }
                     },
                     text: "change")

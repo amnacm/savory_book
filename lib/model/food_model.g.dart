@@ -20,8 +20,8 @@ class FoodAdapter extends TypeAdapter<Food> {
       foodImagePath: fields[0] as String?,
       title: fields[1] as String,
       cookTime: fields[2] as String,
-      category: fields[3] as String,
-      type: fields[4] as String,
+      type: fields[3] as String,
+      category: fields[4] as String,
       ingredients: (fields[5] as List).cast<String>(),
       preparation: fields[6] as String,
       calories: fields[7] as String,
@@ -29,13 +29,14 @@ class FoodAdapter extends TypeAdapter<Food> {
       carbohydrates: fields[9] as String,
       fats: fields[10] as String,
       id: fields[11] as int?,
-    );
+      isCollected: fields[12] as bool,
+    )..addedtoList = fields[13] as DateTime?;
   }
 
   @override
   void write(BinaryWriter writer, Food obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(14)
       ..writeByte(0)
       ..write(obj.foodImagePath)
       ..writeByte(1)
@@ -43,19 +44,27 @@ class FoodAdapter extends TypeAdapter<Food> {
       ..writeByte(2)
       ..write(obj.cookTime)
       ..writeByte(3)
-      ..write(obj.category)
+      ..write(obj.type)
       ..writeByte(4)
-      ..write(obj.ingredients)
+      ..write(obj.category)
       ..writeByte(5)
-      ..write(obj.preparation)
+      ..write(obj.ingredients)
       ..writeByte(6)
-      ..write(obj.calories)
+      ..write(obj.preparation)
       ..writeByte(7)
-      ..write(obj.protein)
+      ..write(obj.calories)
       ..writeByte(8)
-      ..write(obj.carbohydrates)
+      ..write(obj.protein)
       ..writeByte(9)
-      ..write(obj.fats);
+      ..write(obj.carbohydrates)
+      ..writeByte(10)
+      ..write(obj.fats)
+      ..writeByte(11)
+      ..write(obj.id)
+      ..writeByte(12)
+      ..write(obj.isCollected)
+      ..writeByte(13)
+      ..write(obj.addedtoList);
   }
 
   @override

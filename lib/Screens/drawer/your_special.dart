@@ -22,7 +22,15 @@ bool isCollected = false;
 
 class _YourSpecialState extends State<YourSpecial> {
   @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   getAllFoods();
+  // }
+
+  @override
   Widget build(BuildContext context) {
+    getAllFoods();
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -38,7 +46,8 @@ class _YourSpecialState extends State<YourSpecial> {
             ValueListenableBuilder(
               valueListenable: foodListNotifier,
               builder: (BuildContext context, List<Food> food, Widget? child) {
-                log(food.toString());
+                log("before${foodListNotifier.value.toString()}");
+                log("builder ${food.length.toString()}");
                 if (food.isEmpty) {
                   return const Padding(
                     padding: EdgeInsets.only(top: 20.0),
@@ -139,17 +148,17 @@ class _YourSpecialState extends State<YourSpecial> {
                                                 children: [
                                                   IconButton(
                                                     onPressed: () async {
-                                                      final settingsBox =
-                                                          Hive.box(
-                                                              'settingsBox');
-                                                      final userEmail =
-                                                          settingsBox
-                                                              .get('userEmail');
+                                                      // final settingsBox =
+                                                      //     Hive.box(
+                                                      //         'settingsBox');
+                                                      // final userEmail =
+                                                      //     settingsBox
+                                                      //         .get('userEmail');
 
-                                                      final updatedFood =
-                                                          await Navigator.of(
-                                                                  context)
-                                                              .push<Food>(
+                                                      // final updatedFood =
+                                                      //     await
+                                                      Navigator.of(context)
+                                                          .push<Food>(
                                                         MaterialPageRoute(
                                                           builder: (ctx) =>
                                                               EditFoodScreen(
@@ -159,11 +168,11 @@ class _YourSpecialState extends State<YourSpecial> {
                                                         ),
                                                       );
 
-                                                      if (updatedFood != null) {
-                                                        editFoodRecipe(
-                                                            userEmail,
-                                                            updatedFood);
-                                                      }
+                                                      // if (updatedFood != null) {
+                                                      //   editFoodRecipe(
+                                                      //       userEmail,
+                                                      //       updatedFood);
+                                                      // }
                                                     },
                                                     icon: const Icon(
                                                       Icons

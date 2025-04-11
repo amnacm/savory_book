@@ -39,24 +39,25 @@ class Food extends HiveObject {
   @HiveField(11)
   int? id;
 
-   @HiveField(12)
+  @HiveField(12)
   bool isCollected;
 
-   @HiveField(13)
+  @HiveField(13)
   DateTime? addedtoList;
 
-  Food(
-      {required this.foodImagePath,
-      required this.title,
-      required this.cookTime,
-      required this.type,
-      required this.category,
-      required this.ingredients,
-      required this.preparation,
-      required this.calories,
-      required this.protein,
-      required this.carbohydrates,
-      required this.fats,
-      this.id,
-      this.isCollected = false,});
+  Food({
+    required this.foodImagePath,
+    required this.title,
+    required this.cookTime,
+    required this.type,
+    required this.category,
+    required this.ingredients,
+    required this.preparation,
+    required this.calories,
+    required this.protein,
+    required this.carbohydrates,
+    required this.fats,
+    this.id,
+    this.isCollected = false,
+  });
 }

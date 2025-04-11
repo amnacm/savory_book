@@ -10,10 +10,13 @@ import 'package:savory_book/functions/db_function.dart';
 import 'package:savory_book/model/user_model.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
+  const DrawerWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    getUser();
     log(userNotifier.value.toString());
     return Drawer(
       child: SafeArea(

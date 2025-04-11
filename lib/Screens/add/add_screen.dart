@@ -1,9 +1,14 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:savory_book/Functions/db_function.dart';
+import 'package:savory_book/Functions/snackbar.dart';
+import 'package:savory_book/model/food_model.dart';
 import 'package:savory_book/screens/code_exractions/custom_textfield.dart';
 import 'package:savory_book/screens/code_exractions/whole_custom_textfield.dart';
 import 'package:savory_book/functions/nr_function.dart';
+import 'package:savory_book/screens/drawer/your_special.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({super.key});
@@ -31,13 +36,13 @@ class _AddScreenState extends State<AddScreen> {
     TextEditingController(),
   ];
 
+// add image
   Future<void> _pickImage() async {
-    // Mobile: Use file path
     final XFile? pickedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       setState(() {
-        addFoodImagePath = pickedImage.path; // Store file path
+        addFoodImagePath = pickedImage.path;
       });
     }
   }
@@ -299,24 +304,50 @@ class _AddScreenState extends State<AddScreen> {
                       SavingGreenOrange(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              callingTheAddingFunc();
-                              _nameController.clear();
-                              _cookTimeController.clear();
-                              _categoryController.clear();
-                              for (var controller in _ingredientsControllers) {
-                                controller.clear();
-                              }
-                              _ingredientsControllers.removeRange(
-                                  2, _ingredientsControllers.length);
-                              _typeController.clear();
-                              _preparationController.clear();
-                              _caloriesController.clear();
-                              _proteinController.clear();
-                              _carbohydratesController.clear();
-                              _fatsController.clear();
-                              setState(() {
-                                addFoodImagePath = null;
-                              });
+                              int id = int.parse(generataId());
+                              final name = _nameController.text.trim();
+                              final cookTime = _cookTimeController.text.trim();
+                              final category = _categoryController.text.trim();
+                              final type = _typeController.text.trim();
+                              final preparation =
+                                  _preparationController.text.trim();
+                              final calories = _caloriesController.text.trim();
+                              final protein = _proteinController.text.trim();
+                              final carbohydrates =
+                                  _carbohydratesController.text.trim();
+                              final fats = _fatsController.text.trim();
+                              final ingredients = _ingredientsControllers
+                                  .map((controller) => controller.text.trim())
+                                  .where((ingredient) => ingredient.isNotEmpty)
+                                  .toList();
+
+                              final newFood = Food(
+                                id: id,
+                                foodImagePath: addFoodImagePath,
+                                title: name,
+                                cookTime: cookTime,
+                                category: category,
+                                type: type,
+                                ingredients: ingredients,
+                                preparation: preparation,
+                                calories: calories,
+                                protein: protein,
+                                carbohydrates: carbohydrates,
+                                fats: fats,
+                              );
+
+                              addFoodRecipe(newFood);
+                              // Call your function with the new food item
+                              log(newFood.toString());
+
+                              showSnackBar(context, 'Food added successfully!',
+                                  backgroundColor: Colors.green);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const YourSpecial(),
+                                ),
+                              );
                             }
                           },
                           text: "Publish"),

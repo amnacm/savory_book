@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:savory_book/Functions/db_function.dart';
 import 'package:savory_book/Functions/snackbar.dart';
 import 'package:savory_book/model/user_model.dart';
 import 'package:savory_book/screens/register_page.dart';
@@ -30,8 +31,8 @@ class _LoginscreenState extends State<Loginscreen> {
       }
 
       final user = userBox.get(email);
+
       if (user != null && user.password == password) {
-        // Fixed condition
         showSnackBar(context, 'Login successful!',
             backgroundColor: Colors.green);
         Navigator.pushReplacement(

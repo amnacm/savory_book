@@ -7,8 +7,15 @@ import 'package:savory_book/model/user_model.dart';
 
 final userBox = Hive.box<User>('userBox');
 final firstUser = userBox.get('userData');
+void getUser() {
+  final userDB = Hive.box<User>('userBox');
 
-final ValueNotifier<User?> userNotifier = ValueNotifier<User?>(firstUser);
+  userNotifier.value = userDB.values.first;
+  // ignore: invalid_use_of_protected_member
+  userNotifier.notifyListeners();
+}
+
+final ValueNotifier<User?> userNotifier = ValueNotifier<User?>(null);
 
 Future<void> resetPin(User editedUser) async {
   final userDB = await Hive.openBox<User>('userBox');
@@ -23,17 +30,11 @@ Future<void> resetPin(User editedUser) async {
 
 final ValueNotifier<List<Food>> foodListNotifier = ValueNotifier([]);
 
-void addFoodRecipe(Food item) async {
+Future<void> addFoodRecipe(Food item) async {
   final foodDB = Hive.box<Food>('foodBox');
 
-  String id = generataId();
-
-  await foodDB.put(id, item);
+  await foodDB.put(item.id, item);
   getAllFoods();
-  // // Update the local notifier
-  // foodListNotifier.value.add(item);
-  // // ignore: invalid_use_of_protected_member
-  // foodListNotifier.notifyListeners();
 }
 
 //----------------getAllfoods Function-----------
@@ -64,15 +65,11 @@ Future<void> deleteFoodRecipe(int index) async {
 Future<void> editFoodRecipe(int index, Food editedFood) async {
   final foodDB = await Hive.openBox<Food>('foodBox');
 
-  final key = foodDB.keyAt(index);
-
-  editedFood.id = key;
-
-  await foodDB.put(key, editedFood);
+  await foodDB.put(index, editedFood);
 
   getAllFoods();
 }
 
 String generataId() {
-  return DateTime.now().millisecondsSinceEpoch.toString();
+  return DateTime.now().microsecondsSinceEpoch.remainder(4294967295).toString();
 }

@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:savory_book/Functions/db_function.dart';
@@ -45,61 +44,48 @@ class _UserEditScreenState extends State<UserEditScreen> {
           child: Stack(
             children: [
               Align(
-                alignment: Alignment.topCenter,
-                child: SizedBox(
-                  width: double.infinity,
-                  height: screenWidth ? 400 : 310,
-                  child: Image.asset(
-                    'assets/images/login_background.jpg',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Align(
                 alignment: Alignment.bottomCenter,
                 child: SingleChildScrollView(
                   child: Container(
                     width: double.infinity,
                     height: screenWidth ? 500 : 640,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(130))),
+                      color: Colors.white,
+                    ),
                     child: Column(
                       children: [
                         const SizedBox(
                           height: 25,
                         ),
                         //----------Image Picker
-                        if (!kIsWeb)
-                          GestureDetector(
-                            child: CircleAvatar(
-                              backgroundColor: Colors.grey[300],
-                              radius: 45,
-                              backgroundImage: _selectedImagePath != null
-                                  ? FileImage(File(_selectedImagePath!))
-                                  : widget.user.imagePath != null
-                                      ? FileImage(File(widget.user.imagePath!))
-                                      : null,
-                              child: _selectedImagePath == null &&
-                                      widget.user.imagePath == null
-                                  ? const Icon(
-                                      Icons.camera_alt_outlined,
-                                      size: 35,
-                                      color: Colors.grey,
-                                    )
-                                  : null,
-                            ),
-                            onTap: () async {
-                              final XFile? pickedFile = await _picker.pickImage(
-                                  source: ImageSource.gallery);
-                              if (pickedFile != null) {
-                                setState(() {
-                                  _selectedImagePath = pickedFile.path;
-                                });
-                              }
-                            },
+                        GestureDetector(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.grey[300],
+                            radius: 45,
+                            backgroundImage: _selectedImagePath != null
+                                ? FileImage(File(_selectedImagePath!))
+                                : widget.user.imagePath != null
+                                    ? FileImage(File(widget.user.imagePath!))
+                                    : null,
+                            child: _selectedImagePath == null &&
+                                    widget.user.imagePath == null
+                                ? const Icon(
+                                    Icons.camera_alt_outlined,
+                                    size: 35,
+                                    color: Colors.grey,
+                                  )
+                                : null,
                           ),
+                          onTap: () async {
+                            final XFile? pickedFile = await _picker.pickImage(
+                                source: ImageSource.gallery);
+                            if (pickedFile != null) {
+                              setState(() {
+                                _selectedImagePath = pickedFile.path;
+                              });
+                            }
+                          },
+                        ),
 
                         const SizedBox(
                           height: 20,
@@ -141,15 +127,13 @@ class _UserEditScreenState extends State<UserEditScreen> {
                                     const SizedBox(height: 15),
                                     TextFormField(
                                       controller: _passwordController,
-                                      keyboardType: TextInputType.number,
-                                      maxLength: 10,
                                       decoration: const InputDecoration(
                                           hintText: 'password'),
                                       validator: (value) => validateField(
                                           value: value, fieldName: 'Password'),
                                     ),
 
-                                    const SizedBox(height: 15),
+                                    const SizedBox(height: 60),
 
                                     //------------Buttons--------
                                     Row(
