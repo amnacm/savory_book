@@ -34,7 +34,7 @@ class NutritionalDB extends StatelessWidget {
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20)),
                     child: Image.asset(
-                      'assets/images/nutritoins.jpg',
+                      'assets/foods/nutritions.jpeg',
                       fit: BoxFit.cover,
                     ),
                   ),

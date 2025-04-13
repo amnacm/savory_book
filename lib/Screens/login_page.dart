@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:savory_book/Functions/db_function.dart';
 import 'package:savory_book/Functions/snackbar.dart';
 import 'package:savory_book/model/user_model.dart';
 import 'package:savory_book/screens/register_page.dart';
