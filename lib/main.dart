@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:savory_book/model/food_model.dart';
+import 'package:savory_book/model/meal_planner_model.dart';
 import 'package:savory_book/model/user_model.dart';
 import 'package:savory_book/screens/splash_screen.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -11,9 +12,11 @@ void main() async {
 
   Hive.registerAdapter(UserAdapter());
   Hive.registerAdapter(FoodAdapter());
+  Hive.registerAdapter(MealPlannerModelAdapter());
 
   await Hive.openBox<User>('userBox');
   await Hive.openBox<Food>('foodBox');
+  await Hive.openBox<MealPlannerModel>('mealBox');
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(

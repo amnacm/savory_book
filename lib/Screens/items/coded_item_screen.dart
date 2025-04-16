@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/linecons_icons.dart';
+import 'package:savory_book/Functions/snackbar.dart';
 
 class CodedItemScreen extends StatefulWidget {
   final Map<String, String> food;
@@ -147,6 +148,18 @@ class _CodedItemScreenState extends State<CodedItemScreen> {
                 onPressed: () => Navigator.of(context).pop(),
                 icon: const Icon(
                   Icons.arrow_back_rounded,
+                  color: Colors.white,
+                  size: 30,
+                ))),
+        Positioned(
+            top: 40,
+            right: 15,
+            child: IconButton(
+                onPressed: () {
+                  openAlert(context, widget.food);
+                },
+                icon: Icon(
+                  Icons.fastfood_rounded,
                   color: Colors.white,
                   size: 30,
                 ))),

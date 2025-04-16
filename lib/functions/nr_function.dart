@@ -46,7 +46,8 @@ Future<void> publishingFood(
 
   addFoodRecipe(foodRecipeItem);
 
-  showSnackBar(context, 'Your Food Recipe added succefully');
+  showSnackBar(context, 'Your Food Recipe added succefully',
+      backgroundColor: Colors.green);
 }
 
 // function for validators
@@ -68,8 +69,7 @@ String? validateField({
   }
 
   if (email != null &&
-      !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-          .hasMatch(email)) {
+      !RegExp(r'^[a-zA-Z0-9]+@gmail\.com$').hasMatch(email.trim())) {
     return 'Enter a valid Email';
   }
 

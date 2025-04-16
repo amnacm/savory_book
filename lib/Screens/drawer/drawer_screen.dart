@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:savory_book/screens/drawer/meal_planner.dart';
 import 'package:savory_book/screens/drawer/privacy_policy.dart';
 import 'package:savory_book/screens/drawer/settings.dart';
 import 'package:savory_book/screens/drawer/your_special.dart';
@@ -103,6 +104,15 @@ class DrawerWidget extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (ctx) => const YourSpecial()));
+                        }),
+
+                    // ---------Meal Planner
+                    _buildDrawerItem(
+                        icon: Icons.fastfood_outlined,
+                        text: 'Meal Planner',
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) => const MealPlannerScreen()));
                         }),
 
                     //----------Settings

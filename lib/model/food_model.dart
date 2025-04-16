@@ -43,6 +43,9 @@ class Food extends HiveObject {
   bool isCollected;
 
   @HiveField(13)
+  bool isAddedtoPlan;
+
+  @HiveField(14)
   DateTime? addedtoList;
 
   Food({
@@ -57,7 +60,8 @@ class Food extends HiveObject {
     required this.protein,
     required this.carbohydrates,
     required this.fats,
-    this.id,
     this.isCollected = false,
+    this.isAddedtoPlan = false,
+    this.id,
   });
 }
