@@ -83,6 +83,105 @@ class _HomeScreenState extends State<HomeScreen> {
     _filterItems();
   }
 
+  void _showFilterBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) {
+        return Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Select Food Type",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 10,
+                  children: foodTypeFilters.map((type) {
+                    return ChoiceChip(
+                      label: Text(type),
+                      selected: selectedFoodType == type,
+                      onSelected: (selected) {
+                        setState(() {
+                          selectedFoodType = type;
+                        });
+                        Navigator.pop(context);
+                        _filterItems();
+                      },
+                      selectedColor: const Color(0xFF50606F),
+                      labelStyle: TextStyle(
+                        color: selectedFoodType == type
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  "Select Category",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 10,
+                  children: filters.map((filter) {
+                    return ChoiceChip(
+                      label: Text(filter),
+                      selected: selectedItem == filter,
+                      onSelected: (selected) {
+                        setState(() {
+                          selectedItem = filter;
+                        });
+                        Navigator.pop(context);
+                        _filterItems();
+                      },
+                      selectedColor: const Color(0xFF50606F),
+                      labelStyle: TextStyle(
+                        color: selectedItem == filter
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 20),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      setState(() {
+                        selectedItem = "All";
+                        selectedFoodType = "All";
+                        _searchController.clear();
+                      });
+                      Navigator.pop(context);
+                      _filterItems();
+                    },
+                    child: const Text(
+                      "Clear Filters",
+                      style: TextStyle(
+                        color: Color(0xFF50606F),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,12 +220,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: double.infinity,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(60),
-                    bottomRight: Radius.circular(60),
-                  ),
-                ),
                 child: Row(
                   children: [
                     InkWell(
@@ -172,74 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: filters.map(
-                          (filter) {
-                            bool isSelected = selectedItem == filter;
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
-                              child: OutlinedButton(
-                                style: OutlinedButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 13),
-                                  backgroundColor: isSelected
-                                      ? const Color(0xFF50606F)
-                                      : Colors.transparent,
-                                  side: BorderSide(
-                                    color: isSelected
-                                        ? Colors.transparent
-                                        : const Color(0xFF50606F),
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  category(filter);
-                                },
-                                child: Text(
-                                  filter,
-                                  style: TextStyle(
-                                    color: isSelected
-                                        ? Colors.white
-                                        : Colors.black,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ).toList(),
-                      ),
-                    ),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        const Text(
-                          "Food Type: ",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500),
-                        ),
-                        const SizedBox(width: 10),
-                        DropdownButton<String>(
-                          value: selectedFoodType,
-                          items: foodTypeFilters.map((type) {
-                            return DropdownMenuItem(
-                              value: type,
-                              child: Text(type),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              selectedFoodType = value!;
-                            });
-                            _filterItems();
-                          },
-                        ),
-                      ],
-                    ),
                     if (filteredFoodList.isEmpty &&
                         hardcodedFilteredItems.isEmpty)
                       const Padding(
@@ -269,6 +295,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            _showFilterBottomSheet(context);
+          },
+          icon: const Icon(Icons.filter_list),
+          label: const Text("Filter"),
+          backgroundColor: Colors.white),
     );
   }
 }
