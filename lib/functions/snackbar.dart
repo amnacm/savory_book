@@ -13,12 +13,18 @@ void showSnackBar(BuildContext context, String message,
   );
 }
 
-
-Future<void> openAlert(BuildContext context, Map<String, String> food) async{
-
+Future<void> openAlert(BuildContext context, Map<String, String> food) async {
   String? selectedDay;
   String? selectedCategory;
-  final List<String> days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  final List<String> days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday'
+  ];
   final List<String> categories = ['Breakfast', 'Lunch', 'Dinner'];
 
   showDialog(
@@ -80,11 +86,15 @@ Future<void> openAlert(BuildContext context, Map<String, String> food) async{
 
                     // Check if a food item already exists for the selected day and category
                     final existingMeal = mealBox.values.any(
-                      (meal) => meal.day == selectedDay && meal.category == selectedCategory,
+                      (meal) =>
+                          meal.day == selectedDay &&
+                          meal.category == selectedCategory,
                     );
 
                     if (existingMeal) {
-                      showSnackBar(context, '$selectedCategory is already filled for $selectedDay.');
+                      showSnackBar(context,
+                          '$selectedCategory is already filled for $selectedDay.',
+                          backgroundColor: Colors.redAccent);
                       return;
                     }
 
@@ -96,12 +106,11 @@ Future<void> openAlert(BuildContext context, Map<String, String> food) async{
                     ));
                     Navigator.of(context).pop();
                     showSnackBar(context, 'Meal added successfully',
-                    backgroundColor: Colors.green);
+                        backgroundColor: Colors.green);
                   }
                 },
                 child: const Text('Add'),
               ),
-
             ],
           );
         },
