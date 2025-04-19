@@ -296,12 +296,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            _showFilterBottomSheet(context);
-          },
-          icon: const Icon(Icons.filter_list),
-          label: const Text("Filter"),
-          backgroundColor: Colors.white),
+        onPressed: () {
+          _showFilterBottomSheet(context);
+        },
+        icon: const Icon(Icons.filter_list),
+        label: const Text("Filter"),
+        backgroundColor: Colors.white,
+      ),
     );
   }
 }
