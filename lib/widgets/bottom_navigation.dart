@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:savory_book/Screens/code_exractions/color.dart';
+import 'package:savory_book/main.dart';
 import 'package:savory_book/screens/add/add_screen.dart';
 import 'package:savory_book/screens/favorites/collections.dart';
 import 'package:savory_book/screens/home/home_screen.dart';
@@ -37,7 +39,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     {
-      return Scaffold(
+      return ValueListenableBuilder<bool>(
+        valueListenable: themeNotifier,
+        builder: (context, isDarkMode, child) {
+          return Scaffold(
         body: _screens[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
@@ -46,7 +51,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
               _currentIndex = index;
             });
           },
-          selectedItemColor: Color(0xFF8B5E3C),
+           backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          selectedItemColor:isDarkMode ? darkModeColor : Color(0xFF8B5E3C),
           unselectedItemColor: Colors.grey,
           iconSize: 27,
           showUnselectedLabels: false,
@@ -71,6 +77,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 icon: Icon(Icons.person_outline), label: 'Profile'),
           ],
         ),
+      );
+        },
       );
     }
   }

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:savory_book/Functions/db_function.dart';
+import 'package:savory_book/main.dart';
 import 'package:savory_book/screens/code_exractions/custom_textfield.dart';
 import 'package:savory_book/functions/nr_function.dart';
 import 'package:savory_book/functions/snackbar.dart';
@@ -35,6 +36,7 @@ class _UserEditScreenState extends State<UserEditScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = themeNotifier.value;
     bool screenWidth = MediaQuery.of(context).size.width > 450;
 
     return SafeArea(
@@ -50,7 +52,7 @@ class _UserEditScreenState extends State<UserEditScreen> {
                     width: double.infinity,
                     height: screenWidth ? 500 : 640,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color:isDarkMode ? Colors.black : Colors.white,
                     ),
                     child: Column(
                       children: [

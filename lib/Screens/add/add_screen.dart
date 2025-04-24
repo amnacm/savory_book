@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:savory_book/Functions/db_function.dart';
 import 'package:savory_book/Functions/snackbar.dart';
+import 'package:savory_book/main.dart';
 import 'package:savory_book/model/food_model.dart';
 import 'package:savory_book/screens/code_exractions/custom_textfield.dart';
 import 'package:savory_book/screens/code_exractions/whole_custom_textfield.dart';
@@ -82,6 +83,8 @@ class _AddScreenState extends State<AddScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = themeNotifier.value;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -102,7 +105,9 @@ class _AddScreenState extends State<AddScreen> {
                   width: double.infinity,
                   height: 240,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFD9D9D9),
+                    color:isDarkMode
+                        ? const Color(0xFF545454)
+                        : const Color(0xFFD9D9D9),
                     borderRadius: BorderRadius.circular(12),
                     image: addFoodImagePath != null
                         ? DecorationImage(
@@ -190,11 +195,11 @@ class _AddScreenState extends State<AddScreen> {
                         ),
                         icon: Icon(
                           Icons.add_rounded,
-                          color: Colors.black,
+                          color:isDarkMode ? Colors.white : Colors.black,
                         ),
                         style: TextButton.styleFrom(
                             backgroundColor: const Color(0xEBEAEAEA),
-                            foregroundColor: Colors.black),
+                            foregroundColor:isDarkMode ? Colors.white : Colors.black),
                       ),
                       const SizedBox(
                         height: 15,

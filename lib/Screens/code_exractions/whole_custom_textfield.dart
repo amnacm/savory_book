@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:savory_book/functions/nr_function.dart';
+import 'package:savory_book/main.dart';
 import 'package:savory_book/screens/code_exractions/custom_textfield.dart';
 
 class WholeCustomTextField extends StatefulWidget {
@@ -22,6 +23,8 @@ class WholeCustomTextField extends StatefulWidget {
 }
 
 class _WholeCustomTextFieldState extends State<WholeCustomTextField> {
+  final isDarkMode = themeNotifier.value;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -82,7 +85,7 @@ class _WholeCustomTextFieldState extends State<WholeCustomTextField> {
                   hintText: 'choose a category',
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Colors.black,
+                      color:isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:savory_book/main.dart';
 import 'package:savory_book/screens/code_exractions/custom_textfield.dart';
 import 'package:savory_book/screens/code_exractions/whole_custom_textfield.dart';
 import 'package:savory_book/functions/db_function.dart';
@@ -84,6 +85,8 @@ class _EditaddFormsState extends State<EditaddForms> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = themeNotifier.value;
+
     return Form(
         key: _formKey,
         child: Column(
@@ -130,7 +133,7 @@ class _EditaddFormsState extends State<EditaddForms> {
                 style: TextStyle(fontSize: 18),
               ),
               icon: const Icon(Icons.add_rounded),
-              style: TextButton.styleFrom(foregroundColor: Colors.black),
+              style: TextButton.styleFrom(foregroundColor: isDarkMode ? Colors.white : Colors.black),
             ),
 
             const SizedBox(

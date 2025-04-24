@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:savory_book/main.dart';
 import 'package:savory_book/screens/code_exractions/appbar_theme.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -9,14 +11,34 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
- 
-@override
+  late bool isDarkMode;
+
+  @override
+  void initState() {
+    super.initState();
+    final settingsBox = Hive.box('settingsBox');
+    isDarkMode = settingsBox.get('isDarkMode', defaultValue: false);
+  }
+
+  void toggleDarkMode(bool value) async {
+
+    setState(() {
+      isDarkMode = value;
+      themeNotifier.value = value;
+    });
+
+    final settingsBox = Hive.box('settingsBox');
+    await settingsBox.put('isDarkMode', isDarkMode);
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
       body: Column(
         children: [
-          OurAppBarTheme (
+          OurAppBarTheme(
             title: 'Settings',
             onTap: () {
               Navigator.pop(context);
@@ -27,7 +49,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 ListTile(
                   title: const Text(
-                    "Dark Theme",style: TextStyle(fontSize: 20),
+                    "Dark Theme",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  trailing: Switch(
+                    value: isDarkMode,
+                    onChanged: toggleDarkMode,
+                    activeColor: Colors.grey[300],
                   ),
                 )
               ],

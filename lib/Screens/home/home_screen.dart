@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:savory_book/screens/code_exractions/hardcord_retrieve.dart';
 import 'package:savory_book/screens/code_exractions/home_db_retreive.dart';
 import 'package:savory_book/screens/drawer/drawer_screen.dart';
@@ -17,24 +18,19 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _openDrawerKey = GlobalKey<ScaffoldState>();
-  final List<String> filters = [
-    "All",
-    "Breakfast",
-    "Lunch",
-    "Snack",
-    "Dinner",
-    "Drink"
-  ];
-
+  final List<String> filters = ["All", "Breakfast", "Lunch", "Snack", "Dinner", "Drink"];
   final List<String> foodTypeFilters = ["All", "Veg", "Non-Veg"];
+  final List<String> difficultyFilters = ["All", "Easy", "Medium", "Hard"];
 
   final _searchController = TextEditingController();
 
   String selectedItem = "All";
   String selectedFoodType = "All";
+  String selectedDifficulty = "All";
 
   List<Food> filteredFoodList = [];
   List<Map<String, String>> hardcodedFilteredItems = [];
+  late bool isDarkMode;
 
   @override
   void initState() {
@@ -42,6 +38,18 @@ class _HomeScreenState extends State<HomeScreen> {
     filteredFoodList = foodListNotifier.value;
     hardcodedFilteredItems = foodItems;
     _searchController.addListener(_filterItems);
+
+    final settingsBox = Hive.box('settingsBox');
+    isDarkMode = settingsBox.get('isDarkMode', defaultValue: false);
+
+    settingsBox.listenable().addListener(() {
+      final newDarkMode = settingsBox.get('isDarkMode');
+      if (newDarkMode != isDarkMode) {
+        setState(() {
+          isDarkMode = newDarkMode;
+        });
+      }
+    });
   }
 
   @override
@@ -57,22 +65,25 @@ class _HomeScreenState extends State<HomeScreen> {
     final hardcodedList = foodItems;
 
     setState(() {
-      filteredFoodList = foodList
-          .where((food) =>
-              (selectedItem == "All" || food.category == selectedItem) &&
-              (selectedFoodType == "All" ||
-                  food.type.toLowerCase() == selectedFoodType.toLowerCase()) &&
-              food.title.toLowerCase().contains(searchQuery))
-          .toList();
+      filteredFoodList = foodList.where((food) {
+        final matchesCategory = selectedItem == "All" || food.category == selectedItem;
+        final matchesType = selectedFoodType == "All" || food.type.toLowerCase() == selectedFoodType.toLowerCase();
+        final matchesDifficulty = selectedDifficulty == "All" || food.difficulty.toLowerCase() == selectedDifficulty.toLowerCase();
+        final matchesSearch = food.title.toLowerCase().contains(searchQuery);
+        return matchesCategory && matchesType && matchesDifficulty && matchesSearch;
+      }).toList();
 
-      hardcodedFilteredItems = hardcodedList
-          .where((food) =>
-              (selectedItem == "All" || food["category"] == selectedItem) &&
-              (selectedFoodType == "All" ||
-                  (food["type"] ?? "").toLowerCase() ==
-                      selectedFoodType.toLowerCase()) &&
-              (food["name"] ?? "").toLowerCase().contains(searchQuery))
-          .toList();
+      hardcodedFilteredItems = hardcodedList.where((food) {
+        final category = food["category"] ?? "";
+        final type = food["type"] ?? "";
+        final difficulty = food["difficulty"] ?? "";
+        final name = food["name"] ?? "";
+        final matchesCategory = selectedItem == "All" || category == selectedItem;
+        final matchesType = selectedFoodType == "All" || type.toLowerCase() == selectedFoodType.toLowerCase();
+        final matchesDifficulty = selectedDifficulty == "All" || difficulty.toLowerCase() == selectedDifficulty.toLowerCase();
+        final matchesSearch = name.toLowerCase().contains(searchQuery);
+        return matchesCategory && matchesType && matchesDifficulty && matchesSearch;
+      }).toList();
     });
   }
 
@@ -97,10 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Select Food Type",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
+                const Text("Select Food Type", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 10),
                 Wrap(
                   spacing: 10,
@@ -119,16 +127,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       labelStyle: TextStyle(
                         color: selectedFoodType == type
                             ? Colors.white
-                            : Colors.black,
+                            : isDarkMode ? Colors.white70 : Colors.black,
                       ),
                     );
                   }).toList(),
                 ),
                 const SizedBox(height: 20),
-                const Text(
-                  "Select Category",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
+                const Text("Select Category", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 10),
                 Wrap(
                   spacing: 10,
@@ -147,7 +152,32 @@ class _HomeScreenState extends State<HomeScreen> {
                       labelStyle: TextStyle(
                         color: selectedItem == filter
                             ? Colors.white
-                            : Colors.black,
+                            : isDarkMode ? Colors.white70 : Colors.black,
+                      ),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 20),
+                const Text("Select Difficulty", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 10,
+                  children: difficultyFilters.map((level) {
+                    return ChoiceChip(
+                      label: Text(level),
+                      selected: selectedDifficulty == level,
+                      onSelected: (selected) {
+                        setState(() {
+                          selectedDifficulty = level;
+                        });
+                        Navigator.pop(context);
+                        _filterItems();
+                      },
+                      selectedColor: const Color(0xFF50606F),
+                      labelStyle: TextStyle(
+                        color: selectedDifficulty == level
+                            ? Colors.white
+                            : isDarkMode ? Colors.white70 : Colors.black,
                       ),
                     );
                   }).toList(),
@@ -160,6 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       setState(() {
                         selectedItem = "All";
                         selectedFoodType = "All";
+                        selectedDifficulty = "All";
                         _searchController.clear();
                       });
                       Navigator.pop(context);
@@ -184,8 +215,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = isDarkMode ? const Color(0xFF121212) : const Color(0xFFD2AB94);
+    final textColor = isDarkMode ? Colors.white : const Color(0xFF50606F);
+    final cardColor = isDarkMode ? const Color(0xFF1E1E1E) : Colors.white;
+
     return Scaffold(
-      backgroundColor: const Color(0xFFD2AB94),
+      backgroundColor: backgroundColor,
       key: _openDrawerKey,
       drawer: DrawerWidget(),
       body: GestureDetector(
@@ -200,15 +235,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 toolbarHeight: 80,
                 title: Row(
                   children: [
-                    Image.asset(
-                      'assets/images/logo.png',
-                      height: 70,
-                    ),
+                    Image.asset('assets/images/logo.png', height: 70),
                     const SizedBox(width: 5),
-                    const Text(
+                    Text(
                       'SavoryBook',
                       style: TextStyle(
-                        color: Color(0xFF50606F),
+                        color: const Color(0xFF3E2723),
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
@@ -217,20 +249,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                width: double.infinity,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Row(
                   children: [
                     InkWell(
-                      onTap: () {
-                        _openDrawerKey.currentState?.openDrawer();
-                      },
-                      child: const Icon(
-                        Icons.menu_rounded,
-                        size: 40,
-                        color: Colors.white,
-                      ),
+                      onTap: () => _openDrawerKey.currentState?.openDrawer(),
+                      child: Icon(Icons.menu_rounded, size: 40, color: textColor),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
@@ -241,13 +265,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: TextField(
                           controller: _searchController,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: 'Search...',
-                            prefixIcon:
-                                Icon(Icons.search, color: Color(0xFF50606F)),
+                            hintStyle: TextStyle(color: Colors.grey.withOpacity(0.6)),
+                            prefixIcon: Icon(Icons.search, color: Colors.grey),
                             border: InputBorder.none,
                           ),
-                          cursorColor: Color(0xFFD2AB94),
+                          cursorColor: textColor,
+                          style: TextStyle(color: textColor),
                         ),
                       ),
                     ),
@@ -260,23 +285,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Categories',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
-                    ),
+                    Text('Categories',
+                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: textColor)),
                     const SizedBox(height: 10),
-                    if (filteredFoodList.isEmpty &&
-                        hardcodedFilteredItems.isEmpty)
-                      const Padding(
-                        padding: EdgeInsets.only(top: 50),
+                    if (filteredFoodList.isEmpty && hardcodedFilteredItems.isEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 50),
                         child: Center(
-                          child: Text(
-                            'No items found...',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
+                          child: Text('No items found...',
+                              style: TextStyle(fontSize: 18, color: textColor)),
                         ),
                       )
                     else ...[
@@ -284,9 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         selectedItem: selectedItem,
                         searchController: _searchController,
                       ),
-                      HardcodeRetreive(
-                        hardcodedFilteredItems: hardcodedFilteredItems,
-                      ),
+                      HardcodeRetreive(hardcodedFilteredItems: hardcodedFilteredItems),
                     ]
                   ],
                 ),
@@ -296,12 +311,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          _showFilterBottomSheet(context);
-        },
-        icon: const Icon(Icons.filter_list),
-        label: const Text("Filter"),
-        backgroundColor: Colors.white,
+        onPressed: () => _showFilterBottomSheet(context),
+        icon: Icon(Icons.filter_list, color: textColor),
+        label: Text("Filter", style: TextStyle(color: textColor)),
+        backgroundColor: cardColor,
       ),
     );
   }

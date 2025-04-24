@@ -18,7 +18,10 @@ void main() async {
   await Hive.openBox<User>('userBox');
   await Hive.openBox<Food>('foodBox');
   await Hive.openBox<MealPlannerModel>('mealBox');
+  await Hive.openBox('settingsBox');
 
+ final settingsBox = Hive.box('settingsBox');
+  themeNotifier.value = settingsBox.get('isDarkMode',defaultValue: false);
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Color(0x3C000000),
@@ -55,7 +58,7 @@ class MyApp extends StatelessWidget {
                   textTheme: ThemeData.light().textTheme.apply(
                       fontFamily: 'LeagueSpartan', bodyColor: Colors.black),
                   inputDecorationTheme:
-                      _inputDecorationBuilder(const Color(0xFFE27619)),
+                      _inputDecorationBuilder(const Color(0xFFD2AE95)),
                 ),
           home: const Splashscreen(),
         );
