@@ -1,7 +1,6 @@
 import 'package:hive_flutter/adapters.dart';
 part 'meal_planner_model.g.dart';
 
-//hgfjyfjyfmjdtrsyryuoiyoiukjfbxbvxmfkutjgd
 @HiveType(typeId: 2)
 class MealPlannerModel {
   @HiveField(0)

@@ -8,6 +8,7 @@ Future<void> publishingFood(
   String cookTime,
   String type,
   String category,
+  String difficulty,
   String preperation,
   String calories,
   String protein,
@@ -21,6 +22,7 @@ Future<void> publishingFood(
       cookTime.isEmpty ||
       category.isEmpty ||
       type.isEmpty ||
+      difficulty.isEmpty ||
       ingredients.isEmpty ||
       preperation.isEmpty ||
       calories.isEmpty ||
@@ -35,6 +37,7 @@ Future<void> publishingFood(
     title: name,
     cookTime: cookTime,
     type: type,
+    difficulty: difficulty,
     category: category,
     ingredients: ingredients,
     preparation: preperation,
