@@ -26,10 +26,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
     final userBox = Hive.box<User>('userBox');
     user = userBox.get(widget.user.email)!;
 
-    // final userBox = Hive.box<Map>('users');
-    // Map userdetail = userBox.get(widget.user)!;
-    // user = ;
-
     _screens = [
       HomeScreen(user: user),
       const CollectionsScreen(),

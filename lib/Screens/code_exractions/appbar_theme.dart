@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:savory_book/main.dart';
+import 'package:savory_book/screens/code_exractions/color.dart';
 
 class OurAppBarTheme extends StatelessWidget {
   final String title;
@@ -7,9 +9,11 @@ class OurAppBarTheme extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = themeNotifier.value;
+
     return Container(
       width: double.infinity,
-      color: const Color(0xFFD2AB94),
+      color: isDarkMode ? darkModeColor : Color(0xFFD2AB94),
       height: 70,
       child: Row(
         children: [

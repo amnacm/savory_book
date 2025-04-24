@@ -7,13 +7,15 @@ class WholeCustomTextField extends StatefulWidget {
   final TextEditingController cookTime;
   final TextEditingController category;
   final TextEditingController type;
+  final TextEditingController difficulty;
 
   const WholeCustomTextField(
       {super.key,
       required this.name,
       required this.cookTime,
       required this.category,
-      required this.type});
+      required this.type,
+      required this.difficulty});
 
   @override
   State<WholeCustomTextField> createState() => _WholeCustomTextFieldState();
@@ -138,6 +140,44 @@ class _WholeCustomTextFieldState extends State<WholeCustomTextField> {
               },
               validator: (value) => value == null || value.isEmpty
                   ? 'Please select a type'
+                  : null,
+            ))
+          ],
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        //-------Difficulty
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'Type',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              width: 40,
+            ),
+            Expanded(
+                child: DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                  hintText: 'choose a level',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black))),
+              value: widget.type.text.isEmpty ? null : widget.type.text,
+              items: ['easy', 'medium', 'hard']
+                  .map((type) => DropdownMenuItem(
+                        value: type,
+                        child: Text(type),
+                      ))
+                  .toList(),
+              onChanged: (value) {
+                setState(() {
+                  widget.type.text = value!;
+                });
+              },
+              validator: (value) => value == null || value.isEmpty
+                  ? 'Please select a level'
                   : null,
             ))
           ],

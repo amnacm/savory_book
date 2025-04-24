@@ -28,6 +28,7 @@ class _EditaddFormsState extends State<EditaddForms> {
   late final TextEditingController cookTime;
   late final TextEditingController category;
   late final TextEditingController type;
+  late final TextEditingController difficulty;
   late final TextEditingController preparation;
   late final TextEditingController calories;
   late final TextEditingController protein;
@@ -43,6 +44,7 @@ class _EditaddFormsState extends State<EditaddForms> {
     cookTime = TextEditingController(text: widget.foodRecipe.cookTime);
     category = TextEditingController(text: widget.foodRecipe.category);
     type = TextEditingController(text: widget.foodRecipe.type);
+    difficulty = TextEditingController(text: widget.foodRecipe.difficulty);
     preparation = TextEditingController(text: widget.foodRecipe.preparation);
     calories =
         TextEditingController(text: widget.foodRecipe.calories.toString());
@@ -65,6 +67,7 @@ class _EditaddFormsState extends State<EditaddForms> {
       cookTime: cookTime.text,
       category: category.text.trim(),
       type: type.text.trim(),
+      difficulty: difficulty.text.trim(),
       ingredients: _ingredientsControllers.map((e) => e.text).toList(),
       preparation: preparation.text,
       calories: calories.text,
@@ -86,7 +89,12 @@ class _EditaddFormsState extends State<EditaddForms> {
         child: Column(
           children: [
             WholeCustomTextField(
-                name: name, cookTime: cookTime, category: category, type: type),
+              name: name,
+              cookTime: cookTime,
+              category: category,
+              type: type,
+              difficulty: difficulty,
+            ),
 
             //Ingredients
             const Align(

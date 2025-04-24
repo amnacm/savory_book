@@ -5,6 +5,7 @@ List<Map<String, String>> foodItems = [
     "category": "Breakfast",
     "cookTime": "10 minutes",
     "type": "veg",
+    " difficulty": "easy",
     "ingredients":
         "Bread\nEggs\nOnion\nTomato\nGreen chili\nButter or oil\nMayonnaise (optional)\nCheese slice (optional)\nBlack pepper\nRed chili powder\nTurmeric powder\nGaram masala (optional)\nSalt",
     "preparation":
@@ -16,6 +17,7 @@ List<Map<String, String>> foodItems = [
     "category": "Lunch",
     "cookTime": "15 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients":
         "Whole Wheat Tortilla\nHummus\nCucumber\nTomato\nRed Onion\nFeta Cheese\nOlives\nLettuce",
     "preparation":
@@ -27,6 +29,7 @@ List<Map<String, String>> foodItems = [
     "category": "Dinner",
     "cookTime": "20 minutes",
     "type": "non-veg",
+    "difficulty": "medium",
     "ingredients":
         "Salmon Fillets\nGarlic\nButter\nLemon Juice\nParsley\nSalt & Pepper",
     "preparation":
@@ -37,6 +40,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/granola_bars.jpeg",
     "category": "Snack",
     "cookTime": "30 minutes",
+    "difficulty": "medium",
     "ingredients":
         "Oats\nHoney or Maple Syrup\nPeanut Butter\nNuts\nDried Fruits\nChocolate Chips (optional)",
     "preparation":
@@ -47,6 +51,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/berry_lemonade.jpeg",
     "category": "Drink",
     "cookTime": "10 minutes",
+    "difficulty": "easy",
     "ingredients":
         "Mixed Berries (strawberries, blueberries, raspberries)\nLemon Juice\nSugar\nWater\nMint Leaves (optional)",
     "preparation":
@@ -57,6 +62,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/iced_caramel_latte.jpeg",
     "category": "Drink",
     "cookTime": "5 minutes",
+    "difficulty": "easy",
     "ingredients":
         "Ice cubes\nMilk\nEspresso or strong brewed coffee\nCaramel syrup\nSugar (optional)\nWhipped cream (optional)",
     "preparation":
@@ -67,6 +73,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/idli_sambar.jpeg",
     "category": "Breakfast",
     "cookTime": "30 minutes",
+    "difficulty": "medium",
     "type": "vegetarian",
     "ingredients":
         "Idli batter\nSambar dal\nVegetables (carrot, beans, etc.)\nMustard seeds\nCurry leaves\nSalt",
@@ -78,6 +85,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/white_sauce_pasta.jpeg",
     "category": "Snack",
     "cookTime": "20 minutes",
+    "difficulty": "easy",
     "type": "veg",
     "ingredients":
         "Pasta\nButter\nFlour\nMilk\nCheese\nGarlic\nSalt & Pepper\nVegetables (optional)",
@@ -89,6 +97,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/sangria.jpeg",
     "category": "Drink",
     "cookTime": "10 minutes",
+    "difficulty": "easy",
     "ingredients":
         "Red or White Wine\nFruit (orange, lemon, berries)\nSugar\nSparkling Water\nBrandy (optional)\nMint leaves (optional)",
     "preparation":
@@ -99,6 +108,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/samosa.jpeg",
     "category": "Snack",
     "cookTime": "30 minutes",
+    "difficulty": "hard",
     "type": "non-veg",
     "ingredients":
         "All-purpose flour\nChicken (minced)\nOnion\nSpices (cumin, coriander, etc.)\nOil\nSalt\nWater",
@@ -110,6 +120,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/sambar_rice.jpeg",
     "category": "Lunch",
     "cookTime": "30 minutes",
+    "difficulty": "hard",
     "type": "veg",
     "ingredients":
         "Toor dal\nMixed vegetables (carrot, beans, etc.)\nSambar powder\nTamarind paste\nMustard seeds\nCurry leaves\nRice",
@@ -121,6 +132,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/pancakes_maple_syrup.jpeg",
     "category": "Breakfast",
     "cookTime": "15 minutes",
+    "difficulty": "easy",
     "ingredients":
         "Flour\nMilk\nEggs\nSugar\nBaking Powder\nButter\nMaple Syrup",
     "preparation":
@@ -132,6 +144,7 @@ List<Map<String, String>> foodItems = [
     "category": "Lunch",
     "cookTime": "20 minutes",
     "type": "non-veg",
+    "difficulty": "medium",
     "ingredients":
         "Spaghetti\nEggs\nParmesan Cheese\nPancetta or Bacon\nBlack Pepper\nGarlic (optional)",
     "preparation":
@@ -143,6 +156,7 @@ List<Map<String, String>> foodItems = [
     "category": "Dinner",
     "cookTime": "30 minutes",
     "type": "veg",
+    "difficulty": "medium",
     "ingredients":
         "Arborio Rice\nMushrooms\nOnion\nGarlic\nVegetable Broth\nParmesan Cheese\nButter\nParsley",
     "preparation":
@@ -153,6 +167,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/murukku.jpeg",
     "category": "Snack",
     "cookTime": "30 minutes",
+    "difficulty": "hard",
     "ingredients":
         "Rice flour\nCoconut milk\nSugar\nSesame seeds\nCardamom powder\nOil (for frying)",
     "preparation":
@@ -163,6 +178,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/masala_tea.jpeg",
     "category": "Drink",
     "cookTime": "10 minutes",
+    "difficulty": "easy",
     "ingredients":
         "Tea leaves\nWater\nMilk\nSpices (ginger, cardamom, cloves)\nSugar",
     "preparation":
@@ -173,6 +189,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/lassi.jpeg",
     "category": "Drink",
     "cookTime": "5 minutes",
+    "difficulty": "easy",
     "ingredients":
         "Yogurt\nWater\nSugar or Salt\nCardamom (optional)\nIce cubes",
     "preparation":
@@ -183,6 +200,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/kombucha.jpeg",
     "category": "Drink",
     "cookTime": "7 days (fermentation time)",
+    "difficulty": "hard",
     "ingredients":
         "Tea\nSugar\nSCOBY (Symbiotic Culture of Bacteria and Yeast)\nFlavorings (ginger, fruit, etc.)",
     "preparation":
@@ -193,6 +211,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/french_fries.jpeg",
     "category": "Snack",
     "cookTime": "30 minutes",
+    "difficulty": "medium",
     "ingredients": "Potatoes\nOil\nSalt\nPepper\nPaprika (optional)",
     "preparation":
         "Cut potatoes into fries, soak in water, dry, fry in hot oil until golden brown, season with salt and pepper."
@@ -202,6 +221,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/hot_chocolate.jpeg",
     "category": "Drink",
     "cookTime": "10 minutes",
+    "difficulty": "easy",
     "ingredients":
         "Milk\nCocoa Powder\nSugar\nChocolate (optional)\nWhipped Cream (optional)",
     "preparation":
@@ -213,6 +233,7 @@ List<Map<String, String>> foodItems = [
     "category": "Dinner",
     "cookTime": "30 minutes",
     "type": "non-veg",
+    "difficulty": "medium",
     "ingredients":
         "Fish (any type)\nCurry powder\nCoconut milk\nOnion\nTomato\nGarlic\nGinger\nRice",
     "preparation":
@@ -224,6 +245,7 @@ List<Map<String, String>> foodItems = [
     "category": "Lunch",
     "cookTime": "30 minutes",
     "type": "veg",
+    "difficulty": "medium",
     "ingredients":
         "Lentils (any type)\nRice\nOnion\nTomato\nGarlic\nGinger\nSpices (cumin, turmeric, etc.)",
     "preparation":
@@ -234,6 +256,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/coffe_croissant.jpeg",
     "category": "Breakfast",
     "cookTime": "5 minutes",
+    "difficulty": "easy",
     "ingredients": "Coffee\nCroissant\nButter (optional)\nJam (optional)",
     "preparation":
         "Brew coffee, warm croissant in the oven, serve with butter and jam if desired."
@@ -243,6 +266,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/churros.jpeg",
     "category": "Snack",
     "cookTime": "30 minutes",
+    "difficulty": "medium",
     "ingredients":
         "Flour\nWater\nSugar\nSalt\nCinnamon\nChocolate (for dipping)\nOil (for frying)",
     "preparation":
@@ -253,6 +277,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/chips.jpeg",
     "category": "Snack",
     "cookTime": "20 minutes",
+    "difficulty": "medium",
     "ingredients":
         "Raw bananas\nOil\nSalt\nTurmeric powder (optional)\nChili powder (optional)",
     "preparation":
@@ -263,6 +288,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/chicken_biriyani.jpeg",
     "category": "Lunch",
     "cookTime": "1 hour",
+    "difficulty": "hard",
     "type": "non-veg",
     "ingredients":
         "Basmati rice\nChicken\nOnion\nTomato\nGinger-garlic paste\nBiryani masala\nYogurt\nMint leaves\nCoriander leaves\nSalt",
@@ -274,6 +300,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/chapathi_chicken_curry.jpeg",
     "category": "Dinner",
     "cookTime": "40 minutes",
+    "difficulty": "medium",
     "type": "non-veg",
     "ingredients":
         "Whole wheat flour\nWater\nSalt\nChicken\nOnion\nTomato\nSpices (cumin, coriander, etc.)\nOil",
@@ -285,6 +312,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/chicken_salad.jpeg",
     "category": "Lunch",
     "cookTime": "20 minutes",
+    "difficulty": "easy",
     "type": "non-veg",
     "ingredients":
         "Cooked chicken\nLettuce\nTomato\nCucumber\nOlive oil\nLemon juice\nSalt & Pepper",
@@ -296,6 +324,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/fruit_salad.jpeg",
     "category": "Snack",
     "cookTime": "10 minutes",
+    "difficulty": "easy",
     "ingredients":
         "Mixed fruits (apple, banana, orange, etc.)\nHoney\nMint leaves (optional)",
     "preparation":
@@ -306,6 +335,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/vegetable_curry.jpeg",
     "category": "Dinner",
     "cookTime": "30 minutes",
+    "difficulty": "medium",
     "type": "veg",
     "ingredients":
         "Mixed vegetables (carrot, potato, peas)\nOnion\nTomato\nSpices (cumin, coriander, turmeric)\nCoconut milk (optional)",
@@ -317,6 +347,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/vegetable_stir_fry.jpeg",
     "category": "Dinner",
     "cookTime": "15 minutes",
+    "difficulty": "easy",
     "type": "veg",
     "ingredients":
         "Mixed vegetables (bell peppers, broccoli, carrots)\nSoy sauce\nGarlic\nGinger\nOil",
@@ -329,6 +360,7 @@ List<Map<String, String>> foodItems = [
     "category": "Snack",
     "cookTime": "20 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients":
         "Mixed vegetables (carrot, potato, peas)\nVegetable broth\nOnion\nGarlic\nSpices (salt, pepper)",
     "preparation":
@@ -340,6 +372,7 @@ List<Map<String, String>> foodItems = [
     "category": "Lunch",
     "cookTime": "20 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients":
         "Cooked rice\nMixed vegetables (carrot, peas, bell pepper)\nSoy sauce\nGarlic\nGinger\nOil",
     "preparation":
@@ -351,6 +384,7 @@ List<Map<String, String>> foodItems = [
     "category": "Lunch",
     "cookTime": "40 minutes",
     "type": "veg",
+    "difficulty": "hard",
     "ingredients":
         "Basmati rice\nMixed vegetables (carrot, peas, potato)\nBiryani masala\nOnion\nGinger-garlic paste\nMint leaves",
     "preparation":
@@ -361,6 +395,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/chocolate_cake.jpeg",
     "category": "Snack",
     "cookTime": "45 minutes",
+    "difficulty": "medium",
     "ingredients":
         "Flour\nCocoa powder\nSugar\nButter\nEggs\nBaking powder\nMilk\nVanilla extract",
     "preparation":
@@ -371,6 +406,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/vegetable_omelette.jpeg",
     "category": "Breakfast",
     "cookTime": "10 minutes",
+    "difficulty": "easy",
     "type": "veg",
     "ingredients":
         "Eggs\nBell peppers\nOnion\nTomato\nSalt & Pepper\nOil or butter",
@@ -383,6 +419,7 @@ List<Map<String, String>> foodItems = [
     "category": "Snack",
     "cookTime": "20 minutes",
     "type": "non-veg",
+    "difficulty": "easy",
     "ingredients":
         "Burger buns\nChicken patty\nLettuce\nTomato\nOnion\nCheese\nKetchup or mayo",
     "preparation":
@@ -393,6 +430,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/chocolate_ice_cream.jpeg",
     "category": "Snack",
     "cookTime": "30 minutes",
+    "difficulty": "medium",
     "ingredients":
         "Milk\nSugar\nCocoa powder\nVanilla extract\nIce cream maker (optional)",
     "preparation":
@@ -403,6 +441,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/chocolate_mousse.jpeg",
     "category": "Snack",
     "cookTime": "20 minutes",
+    "difficulty": "medium",
     "ingredients":
         "Dark chocolate\nEggs\nSugar\nWhipped cream\nVanilla extract",
     "preparation":
@@ -413,6 +452,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/chocolate_pudding.jpeg",
     "category": "Snack",
     "cookTime": "15 minutes",
+    "difficulty": "easy",
     "ingredients": "Milk\nSugar\nCocoa powder\nCornstarch\nVanilla extract",
     "preparation":
         "Mix ingredients, cook until thickened, pour into cups, chill until set."
@@ -422,6 +462,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/chocolate_tart.jpeg",
     "category": "Snack",
     "cookTime": "45 minutes",
+    "difficulty": "hard",
     "ingredients": "Flour\nButter\nSugar\nEggs\nDark chocolate\nCream",
     "preparation":
         "Make tart crust, bake, fill with chocolate ganache, chill until set."
@@ -431,6 +472,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/mango_juice.jpeg",
     "category": "Drink",
     "cookTime": "5 minutes",
+    "difficulty": "easy",
     "ingredients": "Mango\nSugar\nWater\nLemon juice (optional)",
     "preparation":
         "Blend mango with sugar and water, strain if desired, serve chilled."
@@ -440,6 +482,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/mango_shake.jpeg",
     "category": "Drink",
     "cookTime": "5 minutes",
+    "difficulty": "easy",
     "ingredients": "Mango\nMilk\nSugar\nIce cubes",
     "preparation": "Blend mango with milk, sugar, and ice cubes, serve chilled."
   },
@@ -448,6 +491,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/mango_lassi.jpeg",
     "category": "Drink",
     "cookTime": "5 minutes",
+    "difficulty": "easy",
     "ingredients": "Mango\nYogurt\nSugar\nWater\nCardamom (optional)",
     "preparation": "Blend mango with yogurt, sugar, and water, serve chilled."
   },
@@ -456,6 +500,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/mango_smoothie.jpeg",
     "category": "Drink",
     "cookTime": "5 minutes",
+    "difficulty": "easy",
     "ingredients": "Mango\nYogurt or milk\nSugar\nIce cubes",
     "preparation":
         "Blend mango with yogurt or milk, sugar, and ice cubes, serve chilled."
@@ -465,6 +510,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/mango_salsa.jpeg",
     "category": "Snack",
     "cookTime": "10 minutes",
+    "difficulty": "easy",
     "ingredients": "Mango\nOnion\nTomato\nCilantro\nLime juice\nSalt",
     "preparation":
         "Chop mango, onion, tomato, and cilantro, mix with lime juice and salt, serve with chips."
@@ -474,6 +520,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/apple_juice.jpeg",
     "category": "Drink",
     "cookTime": "5 minutes",
+    "difficulty": "easy",
     "ingredients": "Apples\nSugar\nWater\nLemon juice (optional)",
     "preparation":
         "Blend apples with sugar and water, strain if desired, serve chilled."
@@ -483,6 +530,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/apple_pie.jpeg",
     "category": "Snack",
     "cookTime": "1 hour",
+    "difficulty": "hard",
     "ingredients":
         "Apples\nSugar\nCinnamon\nFlour\nButter\nPie crust\nEgg (for egg wash)",
     "preparation":
@@ -494,6 +542,7 @@ List<Map<String, String>> foodItems = [
     "category": "Dinner",
     "cookTime": "30 minutes",
     "type": "veg",
+    "difficulty": "medium",
     "ingredients":
         "Paneer\nButter\nTomato\nOnion\nCream\nSpices (cumin, coriander, garam masala)\nSalt",
     "preparation":
@@ -505,6 +554,7 @@ List<Map<String, String>> foodItems = [
     "category": "Lunch",
     "cookTime": "20 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients":
         "Cooked rice\nMixed vegetables (carrot, peas, bell pepper)\nSoy sauce\nGarlic\nGinger\nOil",
     "preparation":
@@ -515,6 +565,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/beaf_mandhi.jpeg",
     "category": "Lunch",
     "cookTime": "1 hour",
+    "difficulty": "hard",
     "type": "non-veg",
     "ingredients":
         "Basmati rice\nBeef (cut into pieces)\nOnion\nTomato\nSpices (cumin, coriander, turmeric)\nSalt",
@@ -526,6 +577,7 @@ List<Map<String, String>> foodItems = [
     "image": "assets/foods/beaf_biriyani.jpeg",
     "category": "Lunch",
     "cookTime": "1 hour",
+    "difficulty": "hard",
     "type": "non-veg",
     "ingredients":
         "Basmati rice\nBeef (cut into pieces)\nOnion\nTomato\nSpices (cumin, coriander, turmeric)\nSalt",
@@ -538,6 +590,7 @@ List<Map<String, String>> foodItems = [
     "category": "Dinner",
     "cookTime": "40 minutes",
     "type": "non-veg",
+    "difficulty": "medium",
     "ingredients":
         "Beef (cut into pieces)\nOnion\nTomato\nGinger-garlic paste\nSpices (cumin, coriander, turmeric)\nSalt",
     "preparation":
@@ -549,6 +602,7 @@ List<Map<String, String>> foodItems = [
     "category": "Snack",
     "cookTime": "30 minutes",
     "type": "non-veg",
+    "difficulty": "medium",
     "ingredients":
         "Beef (cut into pieces)\nSpices (cumin, coriander, turmeric)\nSalt\nOil (for frying)",
     "preparation": "Marinate beef with spices, fry in hot oil until crispy."
@@ -559,6 +613,7 @@ List<Map<String, String>> foodItems = [
     "category": "Snack",
     "cookTime": "30 minutes",
     "type": "non-veg",
+    "difficulty": "medium",
     "ingredients":
         "Ground beef\nOnion\nSpices (cumin, coriander, garam masala)\nSalt\nSkewers",
     "preparation":
@@ -570,6 +625,7 @@ List<Map<String, String>> foodItems = [
     "category": "Snack",
     "cookTime": "20 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients":
         "Mixed vegetables (carrot, potato, peas)\nVegetable broth\nOnion\nGarlic\nSpices (salt, pepper)",
     "preparation":
@@ -581,6 +637,7 @@ List<Map<String, String>> foodItems = [
     "category": "Lunch",
     "cookTime": "20 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients":
         "Pasta\nTomato sauce\nOnion\nGarlic\nSpices (basil, oregano)\nCheese (optional)",
     "preparation":
@@ -592,6 +649,7 @@ List<Map<String, String>> foodItems = [
     "category": "Snack",
     "cookTime": "30 minutes",
     "type": "veg",
+    "difficulty": "medium",
     "ingredients":
         "Pizza dough\nTomato sauce\nCheese\nVegetables (bell pepper, onion, etc.)\nSpices (oregano, basil)",
     "preparation":
@@ -603,6 +661,7 @@ List<Map<String, String>> foodItems = [
     "category": "Drink",
     "cookTime": "1 minute",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients": "Banana\nMilk\nHoney\nIce cubes",
     "preparation":
         "Blend banana, milk, honey, and ice for 30-40 seconds until smooth."
@@ -613,6 +672,7 @@ List<Map<String, String>> foodItems = [
     "category": "Snack",
     "cookTime": "2 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients": "Bread slices\nButter",
     "preparation":
         "Spread butter on bread slices and toast on a pan or toaster until golden."
@@ -623,6 +683,7 @@ List<Map<String, String>> foodItems = [
     "category": "Snack",
     "cookTime": "4 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients": "Maggi noodles\nWater\nMaggi tastemaker\nVeggies (optional)",
     "preparation":
         "Boil water, add noodles, tastemaker, and optional veggies. Cook for 4 minutes."
@@ -633,6 +694,7 @@ List<Map<String, String>> foodItems = [
     "category": "Breakfast",
     "cookTime": "5 minutes",
     "type": "non-veg",
+    "difficulty": "easy",
     "ingredients": "Eggs\nOnion\nTomato\nGreen chili\nSalt\nOil",
     "preparation":
         "Heat oil, sauté onion, tomato, and chili. Add eggs and scramble until cooked."
@@ -643,6 +705,7 @@ List<Map<String, String>> foodItems = [
     "category": "Snack",
     "cookTime": "6 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients": "Paneer\nTortilla or roti\nOnion\nSpices\nSauce (optional)",
     "preparation":
         "Sauté paneer with spices, place in wrap with onion and sauce. Roll and serve."
@@ -653,6 +716,7 @@ List<Map<String, String>> foodItems = [
     "category": "Snack",
     "cookTime": "3 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients": "1 papad\nChopped onion\nTomato\nCoriander\nChaat masala",
     "preparation":
         "Roast papad, top with chopped veggies and sprinkle chaat masala."
@@ -663,6 +727,7 @@ List<Map<String, String>> foodItems = [
     "category": "Dessert",
     "cookTime": "4 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients":
         "4 tbsp flour\n2 tbsp sugar\n2 tbsp cocoa powder\n3 tbsp milk\n1 tbsp oil",
     "preparation":
@@ -674,6 +739,7 @@ List<Map<String, String>> foodItems = [
     "category": "Drink",
     "cookTime": "1 minute",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients": "1 banana\n1 cup milk\nHoney (optional)",
     "preparation": "Blend banana, milk, and honey until smooth. Serve chilled."
   },
@@ -683,6 +749,7 @@ List<Map<String, String>> foodItems = [
     "category": "Dinner",
     "cookTime": "6 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients": "Bread\nOnion\nTomato\nGreen chili\nSpices\nOil",
     "preparation":
         "Toast or cut bread into pieces. Sauté onion, tomato, and spices. Mix in bread and cook for 2 minutes."
@@ -693,6 +760,7 @@ List<Map<String, String>> foodItems = [
     "category": "Snack",
     "cookTime": "5 minutes",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients": "Popcorn kernels\nOil\nSalt\nChili powder",
     "preparation":
         "Heat oil, pop the kernels, and toss with salt and chili powder."
@@ -703,6 +771,7 @@ List<Map<String, String>> foodItems = [
     "category": "Drink",
     "cookTime": "1 minute",
     "type": "veg",
+    "difficulty": "easy",
     "ingredients": "Instant coffee powder\nSugar\nHot water or milk",
     "preparation":
         "Mix coffee and sugar in a cup. Add hot water or milk and stir well."

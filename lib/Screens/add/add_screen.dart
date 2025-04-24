@@ -26,6 +26,7 @@ class _AddScreenState extends State<AddScreen> {
   final _cookTimeController = TextEditingController();
   final _categoryController = TextEditingController();
   final _typeController = TextEditingController();
+  final _difficultyController = TextEditingController();
   final _preparationController = TextEditingController();
   final _caloriesController = TextEditingController();
   final _proteinController = TextEditingController();
@@ -52,6 +53,7 @@ class _AddScreenState extends State<AddScreen> {
     final cookTime = _cookTimeController.text;
     final category = _categoryController.text.trim();
     final type = _typeController.text.trim();
+    final difficulty = _difficultyController.text.trim();
     final preperation = _preparationController.text;
     final calories = _caloriesController.text;
     final carbohydrates = _carbohydratesController.text;
@@ -62,8 +64,20 @@ class _AddScreenState extends State<AddScreen> {
         .where((ingredient) => ingredient.isNotEmpty)
         .toList();
 
-    publishingFood(name, cookTime, category, type, preperation, calories,
-        carbohydrates, protein, fats, ingredients, context, addFoodImagePath);
+    publishingFood(
+        name,
+        cookTime,
+        category,
+        type,
+        difficulty,
+        preperation,
+        calories,
+        carbohydrates,
+        protein,
+        fats,
+        ingredients,
+        context,
+        addFoodImagePath);
   }
 
   @override
@@ -117,7 +131,8 @@ class _AddScreenState extends State<AddScreen> {
                           name: _nameController,
                           cookTime: _cookTimeController,
                           category: _categoryController,
-                          type: _typeController),
+                          type: _typeController,
+                          difficulty: _difficultyController),
 
                       //Ingredients
                       const Align(
@@ -309,6 +324,8 @@ class _AddScreenState extends State<AddScreen> {
                               final cookTime = _cookTimeController.text.trim();
                               final category = _categoryController.text.trim();
                               final type = _typeController.text.trim();
+                              final difficulty =
+                                  _difficultyController.text.trim();
                               final preparation =
                                   _preparationController.text.trim();
                               final calories = _caloriesController.text.trim();
@@ -328,6 +345,7 @@ class _AddScreenState extends State<AddScreen> {
                                 cookTime: cookTime,
                                 category: category,
                                 type: type,
+                                difficulty: difficulty,
                                 ingredients: ingredients,
                                 preparation: preparation,
                                 calories: calories,
@@ -371,6 +389,7 @@ class _AddScreenState extends State<AddScreen> {
     _cookTimeController.dispose();
     _categoryController.dispose();
     _typeController.dispose();
+    _difficultyController.dispose();
     _preparationController.dispose();
     _caloriesController.dispose();
     _proteinController.dispose();

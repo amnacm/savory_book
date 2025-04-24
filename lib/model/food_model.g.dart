@@ -22,16 +22,17 @@ class FoodAdapter extends TypeAdapter<Food> {
       cookTime: fields[2] as String,
       type: fields[3] as String,
       category: fields[4] as String,
-      ingredients: (fields[5] as List).cast<String>(),
-      preparation: fields[6] as String,
-      calories: fields[7] as String,
-      protein: fields[8] as String,
-      carbohydrates: fields[9] as String,
-      fats: fields[10] as String,
-      isCollected: fields[12] as bool,
-      isAddedtoPlan: fields[13] as bool,
-      id: fields[11] as int?,
-    )..addedtoList = fields[14] as DateTime?;
+      difficulty: fields[5] as String,
+      ingredients: (fields[6] as List).cast<String>(),
+      preparation: fields[7] as String,
+      calories: fields[8] as String,
+      protein: fields[9] as String,
+      carbohydrates: fields[10] as String,
+      fats: fields[11] as String,
+      isCollected: fields[13] as bool,
+      isAddedtoPlan: fields[14] as bool,
+      id: fields[12] as int?,
+    )..addedtoList = fields[15] as DateTime?;
   }
 
   @override
@@ -49,24 +50,26 @@ class FoodAdapter extends TypeAdapter<Food> {
       ..writeByte(4)
       ..write(obj.category)
       ..writeByte(5)
-      ..write(obj.ingredients)
+      ..write(obj.difficulty)
       ..writeByte(6)
-      ..write(obj.preparation)
+      ..write(obj.ingredients)
       ..writeByte(7)
-      ..write(obj.calories)
+      ..write(obj.preparation)
       ..writeByte(8)
-      ..write(obj.protein)
+      ..write(obj.calories)
       ..writeByte(9)
-      ..write(obj.carbohydrates)
+      ..write(obj.protein)
       ..writeByte(10)
-      ..write(obj.fats)
+      ..write(obj.carbohydrates)
       ..writeByte(11)
-      ..write(obj.id)
+      ..write(obj.fats)
       ..writeByte(12)
-      ..write(obj.isCollected)
+      ..write(obj.id)
       ..writeByte(13)
-      ..write(obj.isAddedtoPlan)
+      ..write(obj.isCollected)
       ..writeByte(14)
+      ..write(obj.isAddedtoPlan)
+      ..writeByte(15)
       ..write(obj.addedtoList);
   }
 

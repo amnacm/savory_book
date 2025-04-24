@@ -19,33 +19,36 @@ class Food extends HiveObject {
   final String category;
 
   @HiveField(5)
-  final List<String> ingredients;
+  final String difficulty;
 
   @HiveField(6)
-  final String preparation;
+  final List<String> ingredients;
 
   @HiveField(7)
-  final String calories;
+  final String preparation;
 
   @HiveField(8)
-  final String protein;
+  final String calories;
 
   @HiveField(9)
-  final String carbohydrates;
+  final String protein;
 
   @HiveField(10)
-  final String fats;
+  final String carbohydrates;
 
   @HiveField(11)
-  int? id;
+  final String fats;
 
   @HiveField(12)
-  bool isCollected;
+  int? id;
 
   @HiveField(13)
-  bool isAddedtoPlan;
+  bool isCollected;
 
   @HiveField(14)
+  bool isAddedtoPlan;
+
+  @HiveField(15)
   DateTime? addedtoList;
 
   Food({
@@ -54,6 +57,7 @@ class Food extends HiveObject {
     required this.cookTime,
     required this.type,
     required this.category,
+    required this.difficulty,
     required this.ingredients,
     required this.preparation,
     required this.calories,

@@ -6,6 +6,7 @@ import 'package:savory_book/model/user_model.dart';
 import 'package:savory_book/screens/splash_screen.dart';
 import 'package:hive_flutter/adapters.dart';
 
+final ValueNotifier<bool> themeNotifier = ValueNotifier(false);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -33,12 +34,50 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.brown,
+    return ValueListenableBuilder<bool>(
+      valueListenable: themeNotifier,
+      builder: (context, isDarkMode, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: isDarkMode
+              ? ThemeData.dark().copyWith(
+                  textTheme: ThemeData.dark().textTheme.apply(
+                      fontFamily: 'LeagueSpartan', bodyColor: Colors.white),
+                  inputDecorationTheme: _inputDecorationBuilder(Colors.white),
+                  elevatedButtonTheme: ElevatedButtonThemeData(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          WidgetStateProperty.all<Color>(Colors.white),
+                    ),
+                  ),
+                )
+              : ThemeData.light().copyWith(
+                  textTheme: ThemeData.light().textTheme.apply(
+                      fontFamily: 'LeagueSpartan', bodyColor: Colors.black),
+                  inputDecorationTheme:
+                      _inputDecorationBuilder(const Color(0xFFE27619)),
+                ),
+          home: const Splashscreen(),
+        );
+      },
+    );
+  }
+
+  static InputDecorationTheme _inputDecorationBuilder(Color color) {
+    return InputDecorationTheme(
+      hintStyle: const TextStyle(color: Colors.grey),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: color),
+        borderRadius: BorderRadius.circular(8.0),
       ),
-      home: Splashscreen(),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: color),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(color: color),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
     );
   }
 }

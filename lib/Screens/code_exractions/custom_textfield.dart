@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:savory_book/Screens/code_exractions/color.dart';
+import 'package:savory_book/main.dart';
 
 class CustomTextfield extends StatelessWidget {
   final TextEditingController controller;
@@ -12,15 +14,20 @@ class CustomTextfield extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = themeNotifier.value;
+
     return TextFormField(
       controller: controller,
       textCapitalization: TextCapitalization.words,
       decoration: InputDecoration(
-        fillColor: const Color(0xFFD9D9D9),
+        fillColor:
+            isDarkMode ? const Color(0xFF545454) : const Color(0xFFD9D9D9),
         filled: true,
         hintText: hintText,
         hintStyle: TextStyle(
-            color: const Color(0xFF6E6E6E), fontWeight: FontWeight.w400),
+            color:
+                isDarkMode ? const Color(0xFFD9D9D9) : const Color(0xFF6E6E6E),
+            fontWeight: FontWeight.w400),
         border: InputBorder.none,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide.none,
@@ -46,6 +53,8 @@ class MultilineTextfield extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = themeNotifier.value;
+
     return TextFormField(
       controller: controller,
       textCapitalization: TextCapitalization.sentences,
@@ -54,11 +63,13 @@ class MultilineTextfield extends StatelessWidget {
       maxLines: null,
       minLines: 2,
       decoration: InputDecoration(
-        fillColor: const Color(0xFFD9D9D9),
+        fillColor:
+            isDarkMode ? const Color(0xFF545454) : const Color(0xFFD9D9D9),
         filled: true,
         hintText: hintText,
         hintStyle: TextStyle(
-            color: const Color(0xFF6E6E6E),
+            color:
+                isDarkMode ? const Color(0xFFD9D9D9) : const Color(0xFF6E6E6E),
             fontSize: 18,
             fontWeight: FontWeight.w400),
         border: InputBorder.none,
@@ -91,13 +102,16 @@ class NutritionalTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = themeNotifier.value;
+
     return TextFormField(
       controller: controller,
       textCapitalization: TextCapitalization.words,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-        fillColor: const Color(0xFFD9D9D9),
+        fillColor:
+            isDarkMode ? const Color(0xFF545454) : const Color(0xFFD9D9D9),
         filled: true,
         suffix: Text(
           suffixText,
@@ -130,11 +144,13 @@ class SavingGreenOrange extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = themeNotifier.value;
+
     return TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
-        backgroundColor: const Color(0xFF50606F),
+        backgroundColor: isDarkMode ? darkModeColor : const Color(0xFF50606F),
         foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -156,14 +172,17 @@ class CancelButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = themeNotifier.value;
+
     return TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
-        foregroundColor: Colors.black,
+        foregroundColor: isDarkMode ? Colors.white : Colors.black,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
-            side: BorderSide(color: Colors.black, width: 1.5)),
+            side: BorderSide(
+                color: isDarkMode ? Colors.white : Colors.black, width: 1.5)),
       ),
       child: Text(
         text,
