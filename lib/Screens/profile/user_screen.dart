@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:savory_book/Screens/login_page.dart';
 import 'package:savory_book/screens/profile/user_edit_screen.dart';
 import 'package:savory_book/functions/db_function.dart';
 import 'package:savory_book/model/user_model.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class UserScreen extends StatelessWidget {
   final User user;
@@ -11,6 +13,22 @@ class UserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('User Details'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              final userBox = await Hive.openBox<User>('userBox');
+              await userBox.clear(); 
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const Loginscreen()),
+              );
+            },
+          ),
+        ],
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

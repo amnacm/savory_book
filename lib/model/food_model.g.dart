@@ -38,7 +38,7 @@ class FoodAdapter extends TypeAdapter<Food> {
   @override
   void write(BinaryWriter writer, Food obj) {
     writer
-      ..writeByte(15)
+      ..writeByte(16)
       ..writeByte(0)
       ..write(obj.foodImagePath)
       ..writeByte(1)
