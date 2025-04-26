@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:savory_book/Screens/code_exractions/appbar_theme.dart';
 import 'package:savory_book/main.dart';
-import 'package:savory_book/screens/code_exractions/appbar_theme.dart';
+import 'package:savory_book/model/user_model.dart';
+import 'package:savory_book/screens/register_page.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -28,18 +30,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     final settingsBox = Hive.box('settingsBox');
     await settingsBox.put('isDarkMode', isDarkMode);
-  }
-
-  void signOutUser() async {
-    final userBox = Hive.box('userBox');
-    await userBox.clear(); 
-    Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
-  }
-
-  void deleteAccount() async {
-    final userBox = Hive.box('userBox');
-    await userBox.deleteFromDisk();
-    Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
   }
 
   @override
@@ -70,50 +60,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   Divider(),
                   ListTile(
-                    leading: Icon(Icons.logout, color: Colors.red),
-                    title: Text("Sign Out", style: TextStyle(fontSize: 18)),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text("Sign Out"),
-                          content: Text("Are you sure you want to sign out?"),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: Text("Cancel"),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                                signOutUser();
-                              },
-                              child: Text("Sign Out"),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                  Divider(),
-                  ListTile(
                     leading: Icon(Icons.delete, color: Colors.red),
-                    title: Text("Delete Account", style: TextStyle(fontSize: 18)),
+                    title:
+                        Text("Delete Account", style: TextStyle(fontSize: 18)),
                     onTap: () {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
                           title: Text("Delete Account"),
-                          content: Text("Are you sure you want to delete your account permanently?"),
+                          content: Text(
+                              "Are you sure you want to delete your account permanently?"),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(context),
                               child: Text("Cancel"),
                             ),
                             TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                                deleteAccount();
+                              onPressed: () async {
+                                final userBox =
+                                    await Hive.openBox<User>('userBox');
+                                await userBox.clear();
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Registerscreen()),
+                                );
                               },
                               child: Text("Delete"),
                             ),

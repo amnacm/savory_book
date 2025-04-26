@@ -18,9 +18,11 @@ class _LoginscreenState extends State<Loginscreen> {
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
 
-  void _loginUser() {
+  void _loginUser() async {
     try {
       final userBox = Hive.box<User>('userBox');
+      final settingsBox = await Hive.openBox('settingsBox'); // ✅ Open settingsBox
+      
       String email = _emailController.text.trim().toLowerCase();
       String password = _passwordController.text.trim();
 
@@ -32,6 +34,8 @@ class _LoginscreenState extends State<Loginscreen> {
       final user = userBox.get(email);
 
       if (user != null && user.password == password) {
+        await settingsBox.put('isLoggedIn', true); // ✅ Set login status to true
+
         showSnackBar(context, 'Login successful!',
             backgroundColor: Colors.green);
         Navigator.pushReplacement(
@@ -59,7 +63,7 @@ class _LoginscreenState extends State<Loginscreen> {
             left: 0,
             right: 0,
             height: MediaQuery.of(context).size.height * 0.5,
-            child: Container(color: Color(0xFFD2AE95)),
+            child: Container(color: const Color(0xFFD2AE95)),
           ),
           Positioned(
             left: 0,
@@ -68,7 +72,7 @@ class _LoginscreenState extends State<Loginscreen> {
             child: SingleChildScrollView(
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.6,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(100),
@@ -81,7 +85,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         "Login",
                         style: TextStyle(
                           fontSize: 24,
@@ -89,10 +93,10 @@ class _LoginscreenState extends State<Loginscreen> {
                           color: Color(0xFF2C3E50),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       TextFormField(
                         controller: _emailController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Enter email',
                           border: OutlineInputBorder(),
                         ),
@@ -103,12 +107,12 @@ class _LoginscreenState extends State<Loginscreen> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       TextFormField(
                         controller: _passwordController,
                         decoration: InputDecoration(
                           labelText: 'Password',
-                          border: OutlineInputBorder(),
+                          border: const OutlineInputBorder(),
                           suffixIcon: IconButton(
                             icon: Icon(_obscurePassword
                                 ? Icons.visibility_off
@@ -128,7 +132,7 @@ class _LoginscreenState extends State<Loginscreen> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
@@ -136,26 +140,26 @@ class _LoginscreenState extends State<Loginscreen> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF2C3E50),
+                          backgroundColor: const Color(0xFF2C3E50),
                           foregroundColor: Colors.white,
                         ),
-                        child: Text('Login'),
+                        child: const Text('Login'),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Registerscreen(),
+                              builder: (context) => const Registerscreen(),
                             ),
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF2C3E50),
+                          backgroundColor: const Color(0xFF2C3E50),
                           foregroundColor: Colors.white,
                         ),
-                        child: Text('Register'),
+                        child: const Text('Register'),
                       ),
                     ],
                   ),

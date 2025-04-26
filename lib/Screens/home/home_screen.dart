@@ -270,6 +270,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             hintStyle: TextStyle(color: Colors.grey.withOpacity(0.6)),
                             prefixIcon: Icon(Icons.search, color: Colors.grey),
                             border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
                           ),
                           cursorColor: textColor,
                           style: TextStyle(color: textColor),

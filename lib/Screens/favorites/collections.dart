@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:savory_book/Screens/code_exractions/appbar_theme.dart';
 import 'package:savory_book/screens/favorites/collection_plan.dart';
 import 'package:savory_book/functions/db_function.dart';
 
@@ -13,14 +14,11 @@ class CollectionsScreen extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 15.0),
-              child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Collections',
-                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.w500),
-                  )),
+             OurAppBarTheme(
+              title: 'Collection',
+              onTap: () {
+                Navigator.pop(context);
+              },
             ),
             Expanded(
               child: ValueListenableBuilder(
