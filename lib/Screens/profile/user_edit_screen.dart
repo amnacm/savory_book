@@ -2,16 +2,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:savory_book/Functions/db_function.dart';
-import 'package:savory_book/main.dart';
-import 'package:savory_book/screens/code_exractions/custom_textfield.dart';
-import 'package:savory_book/functions/nr_function.dart';
+import 'package:savory_book/Screens/code_exractions/custom_textfield.dart';
 import 'package:savory_book/functions/snackbar.dart';
+import 'package:savory_book/main.dart';
 import 'package:savory_book/model/user_model.dart';
 
 class UserEditScreen extends StatefulWidget {
   final User user;
   const UserEditScreen({super.key, required this.user});
-
+  
   @override
   State<UserEditScreen> createState() => _UserEditScreenState();
 }
@@ -183,25 +182,39 @@ class _UserEditScreenState extends State<UserEditScreen> {
   }
 
   //-------------Login validation
-  Future<void> editingUser(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      final editedUser = User(
-          name: _nameController.text,
-          email: _emailController.text,
-          password: _passwordController.text,
-          imagePath: _selectedImagePath ?? widget.user.imagePath);
+Future<void> editingUser(BuildContext context) async {
+  if (_formKey.currentState!.validate()) {
+    final editedUser = User(
+      name: _nameController.text,
+      email: _emailController.text,
+      password: _passwordController.text,
+      // imagePath: _selectedImagePath ?? widget.user.imagePath, // Keep old image if not selected new
+    );
 
-      await resetPin(editedUser);
-      showSnackBar(context, 'User Updated');
-      Navigator.of(context).pop();
-    }
+    // Update Hive box here
+    await userBox.put('userData', editedUser);
+     getUser(); 
+
+    // Update notifier
+    userNotifier.value = editedUser;
+    userNotifier.notifyListeners();
+
+    showSnackBar(
+      context,
+      "User details updated successfully",
+      backgroundColor: Colors.green,
+    );
+    Navigator.pop(context); // Go back after saving
   }
+}
 
-  @override
-  void dispose() {
-    super.dispose();
-    _nameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
+
+  String? validateField({String? value, required String fieldName, String? email}) {
+    if (value == null || value.isEmpty) {
+      return "$fieldName cannot be empty";
+    } else if (fieldName == "Email" && (email == null || !email.contains('@'))) {
+      return "Enter a valid email";
+    }
+    return null;
   }
 }

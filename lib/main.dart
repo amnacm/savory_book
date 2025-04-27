@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:savory_book/functions/db_function.dart';
 import 'package:savory_book/model/food_model.dart';
 import 'package:savory_book/model/meal_planner_model.dart';
 import 'package:savory_book/model/user_model.dart';
@@ -19,6 +20,7 @@ void main() async {
   await Hive.openBox<Food>('foodBox');
   await Hive.openBox<MealPlannerModel>('mealBox');
   await Hive.openBox('settingsBox');
+   getUser(); 
 
  final settingsBox = Hive.box('settingsBox');
   themeNotifier.value = settingsBox.get('isDarkMode',defaultValue: false);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:savory_book/Screens/code_exractions/appbar_theme.dart';
+import 'package:savory_book/functions/snackbar.dart';
 import 'package:savory_book/main.dart';
 import 'package:savory_book/model/user_model.dart';
 import 'package:savory_book/screens/register_page.dart';
@@ -80,6 +81,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 final userBox =
                                     await Hive.openBox<User>('userBox');
                                 await userBox.clear();
+                                showSnackBar(context, "Account Deleted",backgroundColor: Colors.green);
+                                await Future.delayed(Duration(seconds: 2));
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(

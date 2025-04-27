@@ -71,10 +71,5 @@ String? validateField({
     return '$fieldName is required';
   }
 
-  if (email != null &&
-      !RegExp(r'^[a-zA-Z0-9]+@gmail\.com$').hasMatch(email.trim())) {
-    return 'Enter a valid Email';
-  }
-
   return null;
 }
