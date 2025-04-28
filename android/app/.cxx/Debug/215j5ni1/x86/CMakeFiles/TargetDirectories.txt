@@ -1,0 +1,2 @@
+C:/savory_book-1/android/app/.cxx/Debug/215j5ni1/x86/CMakeFiles/edit_cache.dir
+C:/savory_book-1/android/app/.cxx/Debug/215j5ni1/x86/CMakeFiles/rebuild_cache.dir

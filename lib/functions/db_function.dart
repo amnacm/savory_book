@@ -7,21 +7,21 @@ import 'package:savory_book/model/user_model.dart';
 
 final userBox = Hive.box<User>('userBox');
 final firstUser = userBox.get('userData');
-// void getUser() {
-//   final userDB = Hive.box<User>('userBox');
+void getUser() {
+  final userDB = Hive.box<User>('userBox');
 
-//   userNotifier.value = userDB.values.first;
-//   // ignore: invalid_use_of_protected_member
-//   userNotifier.notifyListeners();
-// }
+  userNotifier.value = userDB.get('userData');
+  // ignore: invalid_use_of_protected_member
+  userNotifier.notifyListeners();
+}
 
 final ValueNotifier<User?> userNotifier = ValueNotifier<User?>(null);
 
-void getUser() {
-  final userDB = Hive.box<User>('userBox');
-  userNotifier.value = userDB.get('userData'); // Get user using 'userData' key
-  userNotifier.notifyListeners();
-}
+// void getUser() {
+//   final userDB = Hive.box<User>('userBox');
+//   userNotifier.value = userDB.get('userData'); // Get user using 'userData' key
+//   userNotifier.notifyListeners();
+// }
 
 
 // Future<void> resetPin(User editedUser) async {
