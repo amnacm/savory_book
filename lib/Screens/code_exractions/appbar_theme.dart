@@ -4,13 +4,13 @@ import 'package:savory_book/screens/code_exractions/color.dart';
 
 class OurAppBarTheme extends StatelessWidget {
   final String title;
-  final VoidCallback onTap;
-  final List<Widget>? actions; 
+  final VoidCallback? onTap; 
+  final List<Widget>? actions;
 
   const OurAppBarTheme({
     super.key,
     required this.title,
-    required this.onTap,
+    this.onTap,
     this.actions,
   });
 
@@ -27,20 +27,17 @@ class OurAppBarTheme extends StatelessWidget {
         children: [
           Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0),
-                child: IconButton(
+              const SizedBox(width: 10),
+              if (onTap != null)
+                IconButton(
                   onPressed: onTap,
                   icon: const Icon(Icons.arrow_back),
                   color: Colors.white,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Text(
-                  title,
-                  style: const TextStyle(color: Colors.white, fontSize: 22),
-                ),
+              const SizedBox(width: 5),
+              Text(
+                title,
+                style: const TextStyle(color: Colors.white, fontSize: 22),
               ),
             ],
           ),
@@ -54,3 +51,4 @@ class OurAppBarTheme extends StatelessWidget {
     );
   }
 }
+
