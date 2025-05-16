@@ -1,82 +1,59 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:savory_book/model/food_model.dart';
 import 'package:savory_book/model/user_model.dart';
 
 final userBox = Hive.box<User>('userBox');
-final firstUser = userBox.get('userData');
+final ValueNotifier<User?> userNotifier = ValueNotifier<User?>(null);
+final ValueNotifier<List<Food>> foodListNotifier = ValueNotifier([]);
+
+//------------------ GET USER ------------------
 void getUser() {
   final userDB = Hive.box<User>('userBox');
 
-  userNotifier.value = userDB.get('userData');
-  // ignore: invalid_use_of_protected_member
+  if (userDB.isNotEmpty) {
+    userNotifier.value = userDB.values.first;
+    debugPrint("User loaded: ${userNotifier.value}");
+  } else {
+    userNotifier.value = null;
+    debugPrint("No user found in Hive");
+  }
+
   userNotifier.notifyListeners();
 }
 
-final ValueNotifier<User?> userNotifier = ValueNotifier<User?>(null);
-
-// void getUser() {
-//   final userDB = Hive.box<User>('userBox');
-//   userNotifier.value = userDB.get('userData'); // Get user using 'userData' key
-//   userNotifier.notifyListeners();
-// }
-
-
-// Future<void> resetPin(User editedUser) async {
-//   final userDB = await Hive.openBox<User>('userBox');
-
-//   await userDB.put('userData', editedUser);
-
-//   userNotifier.value = editedUser;
-
-//   // ignore: invalid_use_of_protected_member
-//   userNotifier.notifyListeners();
-// }
-
-final ValueNotifier<List<Food>> foodListNotifier = ValueNotifier([]);
-
+//------------------ ADD FOOD ------------------
 Future<void> addFoodRecipe(Food item) async {
   final foodDB = Hive.box<Food>('foodBox');
-
   await foodDB.put(item.id, item);
   getAllFoods();
 }
 
-//----------------getAllfoods Function-----------
+//------------------ GET ALL FOODS ------------------
 void getAllFoods() {
   final foodDB = Hive.box<Food>('foodBox');
-
-  foodListNotifier.value.clear();
-
-  foodListNotifier.value.addAll(foodDB.values);
-
-  // ignore: invalid_use_of_protected_member
+  foodListNotifier.value = foodDB.values.toList();
   foodListNotifier.notifyListeners();
-  log("get all${foodListNotifier.value.toString()}");
+  log("get all: ${foodListNotifier.value}");
 }
 
-//--------------Delete Food Recipe--------------
+//------------------ DELETE FOOD ------------------
 Future<void> deleteFoodRecipe(int index) async {
   final foodDB = await Hive.openBox<Food>('foodBox');
-
   final key = foodDB.keyAt(index);
-
   await foodDB.delete(key);
-
   getAllFoods();
 }
 
-//-------------Edit Food Recipe
+//------------------ EDIT FOOD ------------------
 Future<void> editFoodRecipe(int index, Food editedFood) async {
   final foodDB = await Hive.openBox<Food>('foodBox');
-
   await foodDB.put(index, editedFood);
-
   getAllFoods();
 }
 
+//------------------ ID GENERATOR ------------------
 String generataId() {
   return DateTime.now().microsecondsSinceEpoch.remainder(4294967295).toString();
 }

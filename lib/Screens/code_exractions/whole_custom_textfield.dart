@@ -85,7 +85,7 @@ class _WholeCustomTextFieldState extends State<WholeCustomTextField> {
                   hintText: 'choose a category',
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color:isDarkMode ? Colors.white : Colors.black,
+                      color: isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
                 ),
@@ -151,38 +151,44 @@ class _WholeCustomTextFieldState extends State<WholeCustomTextField> {
           height: 15,
         ),
         //-------Difficulty
+        //-------Difficulty
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
-              'Type',
+              'Level',
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
               width: 40,
             ),
             Expanded(
-                child: DropdownButtonFormField<String>(
-              decoration: InputDecoration(
+              child: DropdownButtonFormField<String>(
+                decoration: InputDecoration(
                   hintText: 'choose a level',
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black))),
-              value: widget.type.text.isEmpty ? null : widget.type.text,
-              items: ['easy', 'medium', 'hard']
-                  .map((type) => DropdownMenuItem(
-                        value: type,
-                        child: Text(type),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  widget.type.text = value!;
-                });
-              },
-              validator: (value) => value == null || value.isEmpty
-                  ? 'Please select a level'
-                  : null,
-            ))
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                ),
+                value: widget.difficulty.text.isEmpty
+                    ? null
+                    : widget.difficulty.text,
+                items: ['easy', 'medium', 'hard']
+                    .map((level) => DropdownMenuItem(
+                          value: level,
+                          child: Text(level),
+                        ))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    widget.difficulty.text = value!;
+                  });
+                },
+                validator: (value) => value == null || value.isEmpty
+                    ? 'Please select a level'
+                    : null,
+              ),
+            ),
           ],
         ),
       ],
