@@ -26,7 +26,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
     super.initState();
 
     final userBox = Hive.box<User>('userBox');
-    user = userBox.get(widget.user.email)!;
+    final storedUser = userBox.get(widget.user.email);
+
+    if (storedUser == null) {
+      // Fallback to the passed user if Hive doesn't have it
+      user = widget.user;
+    } else {
+      user = storedUser;
+    }
 
     _screens = [
       HomeScreen(user: user),
@@ -38,48 +45,48 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    {
-      return ValueListenableBuilder<bool>(
-        valueListenable: themeNotifier,
-        builder: (context, isDarkMode, child) {
-          return Scaffold(
-        body: _screens[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-           backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          selectedItemColor:isDarkMode ? darkModeColor : Color(0xFF8B5E3C),
-          unselectedItemColor: Colors.grey,
-          iconSize: 27,
-          showUnselectedLabels: false,
-          type: BottomNavigationBarType.fixed,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.bookmark_outline),
-              activeIcon: Icon(Icons.bookmark),
-              label: 'My Collections',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle_outline_rounded),
-              activeIcon: Icon(Icons.add_circle),
-              label: 'Add',
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline), label: 'Profile'),
-          ],
-        ),
-      );
-        },
-      );
-    }
+    return ValueListenableBuilder<bool>(
+      valueListenable: themeNotifier,
+      builder: (context, isDarkMode, child) {
+        return Scaffold(
+          body: _screens[_currentIndex],
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            selectedItemColor: isDarkMode ? darkModeColor : const Color(0xFF8B5E3C),
+            unselectedItemColor: Colors.grey,
+            iconSize: 27,
+            showUnselectedLabels: false,
+            type: BottomNavigationBarType.fixed,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined),
+                activeIcon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.bookmark_outline),
+                activeIcon: Icon(Icons.bookmark),
+                label: 'My Collections',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.add_circle_outline_rounded),
+                activeIcon: Icon(Icons.add_circle),
+                label: 'Add',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline),
+                label: 'Profile',
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

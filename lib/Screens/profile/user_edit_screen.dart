@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:savory_book/Functions/db_function.dart';
 import 'package:savory_book/Screens/code_exractions/custom_textfield.dart';
+import 'package:savory_book/functions/db_function.dart';
 import 'package:savory_book/functions/snackbar.dart';
 import 'package:savory_book/main.dart';
 import 'package:savory_book/model/user_model.dart';
@@ -10,14 +10,13 @@ import 'package:savory_book/model/user_model.dart';
 class UserEditScreen extends StatefulWidget {
   final User user;
   const UserEditScreen({super.key, required this.user});
-  
+
   @override
   State<UserEditScreen> createState() => _UserEditScreenState();
 }
 
 class _UserEditScreenState extends State<UserEditScreen> {
   final _formKey = GlobalKey<FormState>();
-
   String? _selectedImagePath;
   final ImagePicker _picker = ImagePicker();
 
@@ -51,14 +50,11 @@ class _UserEditScreenState extends State<UserEditScreen> {
                     width: double.infinity,
                     height: screenWidth ? 500 : 640,
                     decoration: BoxDecoration(
-                      color:isDarkMode ? Colors.black : Colors.white,
+                      color: isDarkMode ? Colors.black : Colors.white,
                     ),
                     child: Column(
                       children: [
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        //----------Image Picker
+                        const SizedBox(height: 25),
                         GestureDetector(
                           child: CircleAvatar(
                             backgroundColor: Colors.grey[300],
@@ -78,8 +74,8 @@ class _UserEditScreenState extends State<UserEditScreen> {
                                 : null,
                           ),
                           onTap: () async {
-                            final XFile? pickedFile = await _picker.pickImage(
-                                source: ImageSource.gallery);
+                            final XFile? pickedFile =
+                                await _picker.pickImage(source: ImageSource.gallery);
                             if (pickedFile != null) {
                               setState(() {
                                 _selectedImagePath = pickedFile.path;
@@ -87,11 +83,7 @@ class _UserEditScreenState extends State<UserEditScreen> {
                             }
                           },
                         ),
-
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        //--------Forms----------
+                        const SizedBox(height: 20),
                         Form(
                           key: _formKey,
                           child: Center(
@@ -100,67 +92,54 @@ class _UserEditScreenState extends State<UserEditScreen> {
                                 maxWidth: screenWidth ? 400 : double.infinity,
                               ),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 27),
+                                padding: const EdgeInsets.symmetric(horizontal: 27),
                                 child: Column(
                                   children: [
                                     TextFormField(
-                                        controller: _emailController,
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        decoration: const InputDecoration(
-                                            hintText: 'Email'),
-                                        validator: (value) => validateField(
-                                            value: value,
-                                            fieldName: 'Email',
-                                            email: value)),
+                                      controller: _emailController,
+                                      keyboardType: TextInputType.emailAddress,
+                                      decoration: const InputDecoration(hintText: 'Email'),
+                                      validator: (value) => validateField(
+                                        value: value,
+                                        fieldName: 'Email',
+                                        email: value,
+                                      ),
+                                    ),
                                     const SizedBox(height: 15),
                                     TextFormField(
-                                        controller: _nameController,
-                                        keyboardType: TextInputType.name,
-                                        textCapitalization:
-                                            TextCapitalization.words,
-                                        decoration: const InputDecoration(
-                                            hintText: 'User Name'),
-                                        validator: (value) => validateField(
-                                            value: value,
-                                            fieldName: 'User Name')),
+                                      controller: _nameController,
+                                      keyboardType: TextInputType.name,
+                                      textCapitalization: TextCapitalization.words,
+                                      decoration: const InputDecoration(hintText: 'User Name'),
+                                      validator: (value) =>
+                                          validateField(value: value, fieldName: 'User Name'),
+                                    ),
                                     const SizedBox(height: 15),
                                     TextFormField(
                                       controller: _passwordController,
-                                      decoration: const InputDecoration(
-                                          hintText: 'password'),
-                                      validator: (value) => validateField(
-                                          value: value, fieldName: 'Password'),
+                                      decoration: const InputDecoration(hintText: 'Password'),
+                                      validator: (value) =>
+                                          validateField(value: value, fieldName: 'Password'),
                                     ),
-
                                     const SizedBox(height: 60),
-
-                                    //------------Buttons--------
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        //Cancel Button--------
                                         CancelButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            text: "Cancel"),
-
-                                        const SizedBox(
-                                          width: 10,
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          text: "Cancel",
                                         ),
-
-                                        //---------change Button
+                                        const SizedBox(width: 10),
                                         SavingGreenOrange(
-                                            onPressed: () {
-                                              if (_formKey.currentState!
-                                                  .validate()) {
-                                                editingUser(context);
-                                              }
-                                            },
-                                            text: "Change")
+                                          onPressed: () {
+                                            if (_formKey.currentState!.validate()) {
+                                              editingUser(context);
+                                            }
+                                          },
+                                          text: "Change",
+                                        )
                                       ],
                                     ),
                                   ],
@@ -181,23 +160,16 @@ class _UserEditScreenState extends State<UserEditScreen> {
     );
   }
 
-  //-------------Login validation
-Future<void> editingUser(BuildContext context) async {
+ Future<void> editingUser(BuildContext context) async {
   if (_formKey.currentState!.validate()) {
     final editedUser = User(
       name: _nameController.text,
       email: _emailController.text,
       password: _passwordController.text,
-      // imagePath: _selectedImagePath ?? widget.user.imagePath, // Keep old image if not selected new
+      imagePath: _selectedImagePath ?? widget.user.imagePath,
     );
 
-    // Update Hive box here
-    await userBox.put('userData', editedUser);
-     getUser(); 
-
-    // Update notifier
-    userNotifier.value = editedUser;
-    userNotifier.notifyListeners();
+    await updateUser(editedUser); // <- This updates Hive and notifier
 
     showSnackBar(
       context,

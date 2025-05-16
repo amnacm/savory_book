@@ -49,8 +49,8 @@ class UserScreen extends StatelessWidget {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const Loginscreen()),
+                                    builder: (context) => const Loginscreen(),
+                                  ),
                                 );
                               },
                               child: const Text("Log Out"),
@@ -86,10 +86,8 @@ class UserScreen extends StatelessWidget {
                           builder: (context, user, child) {
                             if (user == null) {
                               return const Center(
-                                child: Text(
-                                  "No user found",
-                                  style: TextStyle(fontSize: 20),
-                                ),
+                                child: Text("No user found",
+                                    style: TextStyle(fontSize: 20)),
                               );
                             }
                             return Card(
@@ -122,33 +120,27 @@ class UserScreen extends StatelessWidget {
                                         image: user.imagePath != null
                                             ? DecorationImage(
                                                 image: FileImage(
-                                                  File(user.imagePath!),
-                                                ),
+                                                    File(user.imagePath!)),
                                               )
                                             : null,
                                       ),
                                       child: user.imagePath == null
-                                          ? const Icon(
-                                              Icons.person,
-                                              size: 80,
-                                              color: Colors.grey,
-                                            )
+                                          ? const Icon(Icons.person,
+                                              size: 80, color: Colors.grey)
                                           : null,
                                     ),
                                     const SizedBox(height: 20),
                                     Text(
                                       user.name,
                                       style: const TextStyle(
-                                        fontSize: 23,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                          fontSize: 23,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                     Text(
                                       user.password,
                                       style: const TextStyle(
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.w400),
                                     ),
                                   ],
                                 ),

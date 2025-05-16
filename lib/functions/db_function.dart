@@ -8,21 +8,28 @@ final userBox = Hive.box<User>('userBox');
 final ValueNotifier<User?> userNotifier = ValueNotifier<User?>(null);
 final ValueNotifier<List<Food>> foodListNotifier = ValueNotifier([]);
 
-
-// 
 //------------------ GET USER ------------------
 void getUser() {
   final userDB = Hive.box<User>('userBox');
-
   if (userDB.isNotEmpty) {
-    userNotifier.value = userDB.values.first;
-    debugPrint("User loaded: ${userNotifier.value}");
+    final firstKey = userDB.keys.first;
+    final user = userDB.get(firstKey);
+    userNotifier.value = user;
   } else {
     userNotifier.value = null;
-    debugPrint("No user found in Hive");
   }
-
   userNotifier.notifyListeners();
+}
+
+//------------------ UPDATE USER ------------------
+Future<void> updateUser(User updatedUser) async {
+  final userDB = Hive.box<User>('userBox');
+  if (userDB.isNotEmpty) {
+    final firstKey = userDB.keys.first;
+    await userDB.put(firstKey, updatedUser);
+    userNotifier.value = updatedUser;
+    userNotifier.notifyListeners();
+  }
 }
 
 //------------------ ADD FOOD ------------------
