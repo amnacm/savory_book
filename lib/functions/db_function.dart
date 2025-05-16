@@ -8,6 +8,8 @@ final userBox = Hive.box<User>('userBox');
 final ValueNotifier<User?> userNotifier = ValueNotifier<User?>(null);
 final ValueNotifier<List<Food>> foodListNotifier = ValueNotifier([]);
 
+
+// 
 //------------------ GET USER ------------------
 void getUser() {
   final userDB = Hive.box<User>('userBox');
