@@ -39,7 +39,7 @@ class _AddScreenState extends State<AddScreen> {
     TextEditingController(),
   ];
 
-// add image
+// -----add image
   Future<void> _pickImage() async {
     final XFile? pickedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);

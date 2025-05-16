@@ -53,7 +53,7 @@ Future<void> publishingFood(
       backgroundColor: Colors.green);
 }
 
-// function for validators
+// -----function for validators
 String? validateField({
   required String? value,
   required String fieldName,

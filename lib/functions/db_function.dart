@@ -25,12 +25,22 @@ void getUser() {
 Future<void> updateUser(User updatedUser) async {
   final userDB = Hive.box<User>('userBox');
   if (userDB.isNotEmpty) {
-    final firstKey = userDB.keys.first;
-    await userDB.put(firstKey, updatedUser);
+    final oldUserKey = userDB.keys.first;
+    final oldUser = userDB.get(oldUserKey);
+
+    if (oldUser != null && oldUser.email != updatedUser.email) {
+      await userDB.delete(oldUserKey);
+      await userDB.put(updatedUser.email, updatedUser);
+    } else {
+      await userDB.put(oldUserKey, updatedUser);
+    }
+
     userNotifier.value = updatedUser;
     userNotifier.notifyListeners();
   }
 }
+
+
 
 //------------------ ADD FOOD ------------------
 Future<void> addFoodRecipe(Food item) async {

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:savory_book/Screens/code_exractions/custom_textfield.dart';
 import 'package:savory_book/functions/db_function.dart';
@@ -162,6 +163,9 @@ class _UserEditScreenState extends State<UserEditScreen> {
 
  Future<void> editingUser(BuildContext context) async {
   if (_formKey.currentState!.validate()) {
+    final userBox = Hive.box<User>('userBox');
+    final oldEmail = widget.user.email; // Store the original email
+    
     final editedUser = User(
       name: _nameController.text,
       email: _emailController.text,
@@ -169,17 +173,29 @@ class _UserEditScreenState extends State<UserEditScreen> {
       imagePath: _selectedImagePath ?? widget.user.imagePath,
     );
 
-    await updateUser(editedUser); // <- This updates Hive and notifier
+    // Only update if email changed
+    if (oldEmail != editedUser.email) {
+      // Remove old entry
+      await userBox.delete(oldEmail);
+      // Add new entry with new email as key
+      await userBox.put(editedUser.email, editedUser);
+    } else {
+      // Just update the existing entry
+      await userBox.put(oldEmail, editedUser);
+    }
+
+    // Update the notifier
+    userNotifier.value = editedUser;
+    userNotifier.notifyListeners();
 
     showSnackBar(
       context,
       "User details updated successfully",
       backgroundColor: Colors.green,
     );
-    Navigator.pop(context); // Go back after saving
+    Navigator.pop(context);
   }
 }
-
 
   String? validateField({String? value, required String fieldName, String? email}) {
     if (value == null || value.isEmpty) {

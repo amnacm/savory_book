@@ -83,8 +83,6 @@ Future<void> openAlert(BuildContext context, Map<String, String> food) async {
                 onPressed: () {
                   if (selectedDay != null && selectedCategory != null) {
                     final mealBox = Hive.box<MealPlannerModel>('mealBox');
-
-                    // Check if a food item already exists for the selected day and category
                     final existingMeal = mealBox.values.any(
                       (meal) =>
                           meal.day == selectedDay &&
@@ -98,7 +96,7 @@ Future<void> openAlert(BuildContext context, Map<String, String> food) async {
                       return;
                     }
 
-                    // Add the new meal
+                    //----- Add the new meal-----
                     mealBox.add(MealPlannerModel(
                       day: selectedDay!,
                       name: food["name"] ?? 'Unnamed Food',
