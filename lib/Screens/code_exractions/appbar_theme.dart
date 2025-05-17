@@ -4,13 +4,13 @@ import 'package:savory_book/screens/code_exractions/color.dart';
 
 class OurAppBarTheme extends StatelessWidget {
   final String title;
-  final VoidCallback? onTap; 
+  final VoidCallback? onTap;
   final List<Widget>? actions;
 
   const OurAppBarTheme({
     super.key,
     required this.title,
-    this.onTap,
+    this.onTap, 
     this.actions,
   });
 
@@ -51,4 +51,5 @@ class OurAppBarTheme extends StatelessWidget {
     );
   }
 }
+
 

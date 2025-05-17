@@ -19,9 +19,7 @@ class UserScreen extends StatelessWidget {
           children: [
             OurAppBarTheme(
               title: 'User Details',
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap:null,
               actions: [
                 IconButton(
                   icon: const Icon(Icons.logout),

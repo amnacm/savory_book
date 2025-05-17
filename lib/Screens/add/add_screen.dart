@@ -92,9 +92,7 @@ class _AddScreenState extends State<AddScreen> {
           children: [
             OurAppBarTheme(
               title: 'Add Recipe',
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: null
             ),
             Expanded(
               child: Padding(

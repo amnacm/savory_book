@@ -14,11 +14,9 @@ class CollectionsScreen extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-             OurAppBarTheme(
+            OurAppBarTheme(
               title: 'Collection',
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: null,
             ),
             Expanded(
               child: ValueListenableBuilder(
