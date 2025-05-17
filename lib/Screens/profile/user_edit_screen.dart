@@ -164,7 +164,7 @@ class _UserEditScreenState extends State<UserEditScreen> {
  Future<void> editingUser(BuildContext context) async {
   if (_formKey.currentState!.validate()) {
     final userBox = Hive.box<User>('userBox');
-    final oldEmail = widget.user.email; // Store the original email
+    final oldEmail = widget.user.email;
     
     final editedUser = User(
       name: _nameController.text,
@@ -173,18 +173,14 @@ class _UserEditScreenState extends State<UserEditScreen> {
       imagePath: _selectedImagePath ?? widget.user.imagePath,
     );
 
-    // Only update if email changed
+    
     if (oldEmail != editedUser.email) {
-      // Remove old entry
       await userBox.delete(oldEmail);
-      // Add new entry with new email as key
       await userBox.put(editedUser.email, editedUser);
     } else {
-      // Just update the existing entry
       await userBox.put(oldEmail, editedUser);
     }
 
-    // Update the notifier
     userNotifier.value = editedUser;
     userNotifier.notifyListeners();
 

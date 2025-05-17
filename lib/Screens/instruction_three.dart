@@ -54,10 +54,12 @@ class Startingpage extends StatelessWidget {
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Registerscreen()),
+                          builder: (context) => Registerscreen(),
+                        ),
+                        (Route<dynamic> route) => false,
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -82,10 +84,12 @@ class Startingpage extends StatelessWidget {
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Loginscreen()),
+                                builder: (context) => Loginscreen(),
+                              ),
+                              (Route<dynamic> route) => false,
                             );
                           },
                           child: Text(

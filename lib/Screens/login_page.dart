@@ -21,8 +21,8 @@ class _LoginscreenState extends State<Loginscreen> {
   void _loginUser() async {
     try {
       final userBox = Hive.box<User>('userBox');
-      final settingsBox = await Hive.openBox('settingsBox'); 
-      
+      final settingsBox = await Hive.openBox('settingsBox');
+
       String email = _emailController.text.trim().toLowerCase();
       String password = _passwordController.text.trim();
 
@@ -34,14 +34,15 @@ class _LoginscreenState extends State<Loginscreen> {
       final user = userBox.get(email);
 
       if (user != null && user.password == password) {
-        await settingsBox.put('isLoggedIn', true); 
+        await settingsBox.put('isLoggedIn', true);
         showSnackBar(context, 'Login successful!',
             backgroundColor: Colors.green);
-        Navigator.pushReplacement(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => BottomNavigation(user: user),
           ),
+          (Route<dynamic> route) => false,
         );
       } else {
         showSnackBar(context, 'Incorrect password.',
@@ -147,11 +148,12 @@ class _LoginscreenState extends State<Loginscreen> {
                       const SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const Registerscreen(),
+                              builder: (context) => Registerscreen(),
                             ),
+                            (Route<dynamic> route) => false,
                           );
                         },
                         style: ElevatedButton.styleFrom(

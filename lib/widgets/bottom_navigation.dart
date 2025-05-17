@@ -29,7 +29,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
     final storedUser = userBox.get(widget.user.email);
 
     if (storedUser == null) {
-      // Fallback to the passed user if Hive doesn't have it
       user = widget.user;
     } else {
       user = storedUser;

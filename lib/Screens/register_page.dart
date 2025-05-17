@@ -21,7 +21,6 @@ class _RegisterscreenState extends State<Registerscreen> {
   final _confirmPasswordController = TextEditingController();
   File? _image;
 
-  // Password  toggle
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
@@ -41,7 +40,6 @@ class _RegisterscreenState extends State<Registerscreen> {
     String email = _emailController.text.trim().toLowerCase();
     String password = _passwordController.text.trim();
     String confirmPassword = _confirmPasswordController.text.trim();
-    // String? imagePath = _image?.path;
 
     if (userBox.containsKey(email)) {
       showSnackBar(context, 'Email already exists! Please log in.');
