@@ -44,12 +44,13 @@ class UserScreen extends StatelessWidget {
                                     await Hive.openBox('settingsBox');
                                 await settingsBox.put('isLoggedIn', false);
 
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const Loginscreen(),
-                                  ),
-                                );
+                               Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Loginscreen(),
+                              ),
+                              (Route<dynamic> route) => false,
+                            );
                               },
                               child: const Text("Log Out"),
                             ),

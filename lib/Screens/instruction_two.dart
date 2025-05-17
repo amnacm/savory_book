@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:savory_book/screens/instruction_three.dart';
 
-class Secondpage extends StatelessWidget {
-  const Secondpage({super.key});
+class Secondscreen extends StatelessWidget {
+  const Secondscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,8 @@ class Secondpage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Startingpage()),
+                        MaterialPageRoute(
+                            builder: (context) => Startingscreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -81,7 +82,7 @@ class Secondpage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Startingpage()),
+                                builder: (context) => Startingscreen()),
                           );
                         },
                         child: Text(

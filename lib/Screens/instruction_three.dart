@@ -3,8 +3,8 @@ import 'package:savory_book/screens/login_page.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:savory_book/screens/register_page.dart';
 
-class Startingpage extends StatelessWidget {
-  const Startingpage({super.key});
+class Startingscreen extends StatelessWidget {
+  const Startingscreen({super.key});
 
   @override
   Widget build(BuildContext context) {

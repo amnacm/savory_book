@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:savory_book/Screens/instruction_two.dart';
 import 'package:savory_book/screens/instruction_three.dart';
+import 'package:savory_book/screens/instruction_two.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});
@@ -51,7 +51,7 @@ class IntroScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Secondpage()),
+                        MaterialPageRoute(builder: (context) => Secondscreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -73,7 +73,7 @@ class IntroScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Startingpage()),
+                                builder: (context) => Startingscreen()),
                           );
                         },
                         child: Text(
