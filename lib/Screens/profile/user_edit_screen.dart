@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:savory_book/Screens/code_exractions/custom_textfield.dart';
 import 'package:savory_book/functions/db_function.dart';
@@ -163,26 +162,15 @@ class _UserEditScreenState extends State<UserEditScreen> {
 
  Future<void> editingUser(BuildContext context) async {
   if (_formKey.currentState!.validate()) {
-    final userBox = Hive.box<User>('userBox');
-    final oldEmail = widget.user.email;
-    
+    final oldUser = widget.user;
     final editedUser = User(
       name: _nameController.text,
       email: _emailController.text,
       password: _passwordController.text,
-      imagePath: _selectedImagePath ?? widget.user.imagePath,
+      imagePath: _selectedImagePath ?? oldUser.imagePath,
     );
 
-    
-    if (oldEmail != editedUser.email) {
-      await userBox.delete(oldEmail);
-      await userBox.put(editedUser.email, editedUser);
-    } else {
-      await userBox.put(oldEmail, editedUser);
-    }
-
-    userNotifier.value = editedUser;
-    userNotifier.notifyListeners();
+    await saveEditedUser(oldUser, editedUser);
 
     showSnackBar(
       context,

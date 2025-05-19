@@ -41,6 +41,21 @@ Future<void> updateUser(User updatedUser) async {
 }
 
 
+//------------------ SAVE USER ------------------
+Future<void> saveEditedUser(User oldUser, User newUser) async {
+  final userDB = Hive.box<User>('userBox');
+
+  if (oldUser.email != newUser.email) {
+    await userDB.delete(oldUser.email);
+    await userDB.put(newUser.email, newUser);
+  } else {
+    await userDB.put(oldUser.email, newUser);
+  }
+
+  userNotifier.value = newUser;
+  userNotifier.notifyListeners();
+}
+
 
 //------------------ ADD FOOD ------------------
 Future<void> addFoodRecipe(Food item) async {
