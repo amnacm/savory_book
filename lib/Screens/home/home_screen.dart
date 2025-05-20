@@ -18,7 +18,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _openDrawerKey = GlobalKey<ScaffoldState>();
-  final List<String> filters = ["All", "Breakfast", "Lunch", "Snack", "Dinner", "Drink"];
+  final List<String> filters = [
+    "All",
+    "Breakfast",
+    "Lunch",
+    "Snack",
+    "Dinner",
+    "Drink"
+  ];
   final List<String> foodTypeFilters = ["All", "Veg", "Non-Veg"];
   final List<String> difficultyFilters = ["All", "Easy", "Medium", "Hard"];
 
@@ -66,11 +73,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
     setState(() {
       filteredFoodList = foodList.where((food) {
-        final matchesCategory = selectedItem == "All" || food.category == selectedItem;
-        final matchesType = selectedFoodType == "All" || food.type.toLowerCase() == selectedFoodType.toLowerCase();
-        final matchesDifficulty = selectedDifficulty == "All" || food.difficulty.toLowerCase() == selectedDifficulty.toLowerCase();
+        final matchesCategory =
+            selectedItem == "All" || food.category == selectedItem;
+        final matchesType = selectedFoodType == "All" ||
+            food.type.toLowerCase() == selectedFoodType.toLowerCase();
+        final matchesDifficulty = selectedDifficulty == "All" ||
+            food.difficulty.toLowerCase() == selectedDifficulty.toLowerCase();
         final matchesSearch = food.title.toLowerCase().contains(searchQuery);
-        return matchesCategory && matchesType && matchesDifficulty && matchesSearch;
+        return matchesCategory &&
+            matchesType &&
+            matchesDifficulty &&
+            matchesSearch;
       }).toList();
 
       hardcodedFilteredItems = hardcodedList.where((food) {
@@ -78,11 +91,17 @@ class _HomeScreenState extends State<HomeScreen> {
         final type = food["type"] ?? "";
         final difficulty = food["difficulty"] ?? "";
         final name = food["name"] ?? "";
-        final matchesCategory = selectedItem == "All" || category == selectedItem;
-        final matchesType = selectedFoodType == "All" || type.toLowerCase() == selectedFoodType.toLowerCase();
-        final matchesDifficulty = selectedDifficulty == "All" || difficulty.toLowerCase() == selectedDifficulty.toLowerCase();
+        final matchesCategory =
+            selectedItem == "All" || category == selectedItem;
+        final matchesType = selectedFoodType == "All" ||
+            type.toLowerCase() == selectedFoodType.toLowerCase();
+        final matchesDifficulty = selectedDifficulty == "All" ||
+            difficulty.toLowerCase() == selectedDifficulty.toLowerCase();
         final matchesSearch = name.toLowerCase().contains(searchQuery);
-        return matchesCategory && matchesType && matchesDifficulty && matchesSearch;
+        return matchesCategory &&
+            matchesType &&
+            matchesDifficulty &&
+            matchesSearch;
       }).toList();
     });
   }
@@ -108,7 +127,9 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Select Food Type", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text("Select Food Type",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 10),
                 Wrap(
                   spacing: 10,
@@ -127,13 +148,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       labelStyle: TextStyle(
                         color: selectedFoodType == type
                             ? Colors.white
-                            : isDarkMode ? Colors.white70 : Colors.black,
+                            : isDarkMode
+                                ? Colors.white70
+                                : Colors.black,
                       ),
                     );
                   }).toList(),
                 ),
                 const SizedBox(height: 20),
-                const Text("Select Category", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text("Select Category",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 10),
                 Wrap(
                   spacing: 10,
@@ -152,13 +177,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       labelStyle: TextStyle(
                         color: selectedItem == filter
                             ? Colors.white
-                            : isDarkMode ? Colors.white70 : Colors.black,
+                            : isDarkMode
+                                ? Colors.white70
+                                : Colors.black,
                       ),
                     );
                   }).toList(),
                 ),
                 const SizedBox(height: 20),
-                const Text("Select Difficulty", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text("Select Difficulty",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 10),
                 Wrap(
                   spacing: 10,
@@ -177,7 +206,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       labelStyle: TextStyle(
                         color: selectedDifficulty == level
                             ? Colors.white
-                            : isDarkMode ? Colors.white70 : Colors.black,
+                            : isDarkMode
+                                ? Colors.white70
+                                : Colors.black,
                       ),
                     );
                   }).toList(),
@@ -215,7 +246,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = isDarkMode ? const Color(0xFF121212) : const Color(0xFFD2AB94);
+    final backgroundColor =
+        isDarkMode ? const Color(0xFF121212) : const Color(0xFFD2AB94);
     final textColor = isDarkMode ? Colors.white : const Color(0xFF50606F);
     final cardColor = isDarkMode ? const Color(0xFF1E1E1E) : Colors.white;
 
@@ -249,12 +281,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Row(
                   children: [
                     InkWell(
                       onTap: () => _openDrawerKey.currentState?.openDrawer(),
-                      child: Icon(Icons.menu_rounded, size: 40, color: textColor),
+                      child:
+                          Icon(Icons.menu_rounded, size: 40, color: textColor),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
@@ -267,7 +301,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           controller: _searchController,
                           decoration: InputDecoration(
                             hintText: 'Search...',
-                            hintStyle: TextStyle(color: Colors.grey.withOpacity(0.6)),
+                            hintStyle:
+                                TextStyle(color: Colors.grey.withOpacity(0.6)),
                             prefixIcon: Icon(Icons.search, color: Colors.grey),
                             border: InputBorder.none,
                             enabledBorder: InputBorder.none,
@@ -287,10 +322,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Categories',
-                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: textColor)),
                     const SizedBox(height: 10),
-                    if (filteredFoodList.isEmpty && hardcodedFilteredItems.isEmpty)
+                    if (filteredFoodList.isEmpty &&
+                        hardcodedFilteredItems.isEmpty)
                       Padding(
                         padding: const EdgeInsets.only(top: 50),
                         child: Center(
@@ -303,7 +337,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         selectedItem: selectedItem,
                         searchController: _searchController,
                       ),
-                      HardcodeRetreive(hardcodedFilteredItems: hardcodedFilteredItems),
+                      HardcodeRetreive(
+                          hardcodedFilteredItems: hardcodedFilteredItems),
                     ]
                   ],
                 ),

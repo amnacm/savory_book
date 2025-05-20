@@ -3,7 +3,6 @@ import 'package:savory_book/main.dart';
 import 'package:savory_book/screens/code_exractions/custom_textfield.dart';
 import 'package:savory_book/screens/code_exractions/whole_custom_textfield.dart';
 import 'package:savory_book/functions/db_function.dart';
-import 'package:savory_book/functions/nr_function.dart';
 import 'package:savory_book/functions/snackbar.dart';
 import 'package:savory_book/model/food_model.dart';
 import 'package:savory_book/screens/drawer/your_special.dart';
