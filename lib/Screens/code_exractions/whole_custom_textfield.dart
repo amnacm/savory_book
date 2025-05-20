@@ -151,7 +151,6 @@ class _WholeCustomTextFieldState extends State<WholeCustomTextField> {
           height: 15,
         ),
         //-------Difficulty
-        //-------Difficulty
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [

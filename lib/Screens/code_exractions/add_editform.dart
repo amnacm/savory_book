@@ -108,19 +108,38 @@ class _EditaddFormsState extends State<EditaddForms> {
                 )),
 
             Column(
-              children: List.generate(_ingredientsControllers.length, (index) {
-                return Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: CustomTextfield(
-                      controller: _ingredientsControllers[index],
-                      hintText: 'Ingredients ${index + 1}',
-                      validator: (value) => validateField(
-                        value: value,
-                        fieldName: 'Ingredient ${index + 1}',
-                      ),
-                    ));
-              }),
-            ),
+                                children: List.generate(_ingredientsControllers.length,
+                                    (index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(bottom: 15),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: CustomTextfield(
+                                            controller: _ingredientsControllers[index],
+                                            hintText: 'Ingredient ${index + 1}',
+                                            validator: (value) {
+                                              if (value == null || value.isEmpty) {
+                                                return 'Provide ingredient';
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10),
+                                        IconButton(
+                                          icon: const Icon(Icons.remove_circle_rounded),
+                                          onPressed: () {
+                                            setState(() {
+                                              _ingredientsControllers.removeAt(index);
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                              ),
 
             TextButton.icon(
               onPressed: () {
@@ -144,7 +163,7 @@ class _EditaddFormsState extends State<EditaddForms> {
             MultilineTextfield(
                 controller: preparation,
                 hintText: 'Describe your cooking process here...',
-                errorText: 'Explain your your cooking process'),
+                errorText: 'Explain your  cooking process'),
             const SizedBox(
               height: 15,
             ),
@@ -188,7 +207,7 @@ class _EditaddFormsState extends State<EditaddForms> {
                 const SizedBox(
                     width: 150,
                     child: Text(
-                      'Protien',
+                      'Protein',
                       style: TextStyle(fontSize: 20),
                     )),
                 const SizedBox(
@@ -198,7 +217,7 @@ class _EditaddFormsState extends State<EditaddForms> {
                     child: NutritionalTextField(
                         controller: protein,
                         suffixText: 'g.',
-                        errorText: 'Give the Protien of your food')),
+                        errorText: 'Give the Protein of your food')),
               ],
             ),
             const SizedBox(

@@ -218,7 +218,7 @@ class _AddScreenState extends State<AddScreen> {
                               MultilineTextfield(
                                   controller: _preparationController,
                                   hintText: 'Describe your cooking process here...',
-                                  errorText: 'Explain your your cooking process'),
+                                  errorText: 'Explain your cooking process'),
                               const SizedBox(
                                 height: 15,
                               ),
@@ -263,7 +263,7 @@ class _AddScreenState extends State<AddScreen> {
                                   const SizedBox(
                                       width: 150,
                                       child: Text(
-                                        'Protien',
+                                        'Protein',
                                         style: TextStyle(fontSize: 20),
                                       )),
                                   const SizedBox(
@@ -273,7 +273,7 @@ class _AddScreenState extends State<AddScreen> {
                                       child: NutritionalTextField(
                                           controller: _proteinController,
                                           suffixText: 'g.',
-                                          errorText: 'Give the Protien of your food')),
+                                          errorText: 'Give the Protein of your food')),
                                 ],
                               ),
                               const SizedBox(
@@ -369,7 +369,6 @@ class _AddScreenState extends State<AddScreen> {
                                       );
                     
                                       addFoodRecipe(newFood);
-                                      // Call your function with the new food item
                                       log(newFood.toString());
                     
                                       showSnackBar(context, 'Food added successfully!',
