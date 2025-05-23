@@ -13,6 +13,7 @@ class IntroScreen extends StatelessWidget {
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.8,
+            width: double.infinity,
             child: Image.asset(
               'assets/images/chef.jpeg',
               fit: BoxFit.cover,
