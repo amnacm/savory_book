@@ -11,13 +11,17 @@ class IntroScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.8,
-            width: double.infinity,
-            child: Image.asset(
-              'assets/images/chef.jpeg',
-              fit: BoxFit.cover,
-            ),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return SizedBox(
+                height: constraints.maxHeight * 0.8,
+                width: constraints.maxWidth,
+                child: Image.asset(
+                  'assets/images/chef.jpeg',
+                  fit: BoxFit.cover,
+                ),
+              );
+            },
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -26,8 +30,9 @@ class IntroScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Color(0xFFD2AE95),
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40)),
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                ),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -52,7 +57,8 @@ class IntroScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Secondscreen()),
+                        MaterialPageRoute(
+                            builder: (context) => Secondscreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(

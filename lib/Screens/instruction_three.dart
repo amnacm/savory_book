@@ -11,13 +11,17 @@ class Startingscreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.8,
-            width: double.infinity,
-            child: Image.asset(
-              'assets/images/starting.jpeg',
-              fit: BoxFit.cover,
-            ),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return SizedBox(
+                height: constraints.maxHeight * 0.8,
+                width: constraints.maxWidth,
+                child: Image.asset(
+                  'assets/images/starting.jpeg',
+                  fit: BoxFit.cover,
+                ),
+              );
+            },
           ),
           Align(
             alignment: Alignment.bottomCenter,
